@@ -9,18 +9,26 @@ class Game : public IGame
 public:
 
 	Game();
-	// Inherited via IGame
+	// IGame methods
 	EPlayer GetCurrentPlayer() const override;
 	EState GetCurrentState() const override;
 
 	void TakeCard() override;
 	void HoldCards() override;
+
+	//other methods
+
+
+
 private:
+	void ResetGame();
+
 	void InitiateGame();
-	void Reset();
 	void InitiateCards(const EPlayer player);
-	int CalculatePoints();
+
 	bool CheckWin();
+	int CalculatePoints();
+
 	void SwitchPlayers();
 
 private:

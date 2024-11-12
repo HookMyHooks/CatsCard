@@ -6,7 +6,7 @@ Game::Game()
 {
 }
 
-IGamePtr IGame::Produce(bool vsComputer, bool testing)
+IGamePtr IGame::Produce()
 {
 	return std::make_shared<Game>();
 }
@@ -39,8 +39,9 @@ void Game::InitiateGame()
 	InitiateCards(EPlayer::Player2);
 }
 
-void Game::Reset()
+void Game::ResetGame()
 {
+	//deck reinitializat and shuffle
 	m_cardsPlayer1.clear();
 	m_cardsPlayer2.clear();
 }

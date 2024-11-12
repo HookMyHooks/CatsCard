@@ -15,6 +15,6 @@ public:
 	virtual void TakeCard() = 0;
 	virtual void HoldCards() = 0;
 
-	IGamePtr Produce(bool vsComputer, bool testing);
+	static IGamePtr Produce();
 	virtual ~IGame() = default;
 };
