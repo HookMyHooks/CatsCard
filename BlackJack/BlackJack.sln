@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJack", "BlackJack\BlackJack.vcxproj", "{E7C6480E-F928-4168-A6DD-058C520AB88F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackTests", "BlackJackTests\BlackJackTests.vcxproj", "{930F325A-9A4F-4FDA-A248-E104884B55F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{E7C6480E-F928-4168-A6DD-058C520AB88F}.Release|x64.Build.0 = Release|x64
 		{E7C6480E-F928-4168-A6DD-058C520AB88F}.Release|x86.ActiveCfg = Release|Win32
 		{E7C6480E-F928-4168-A6DD-058C520AB88F}.Release|x86.Build.0 = Release|Win32
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Debug|x64.ActiveCfg = Debug|x64
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Debug|x64.Build.0 = Debug|x64
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Debug|x86.ActiveCfg = Debug|Win32
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Debug|x86.Build.0 = Debug|Win32
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x64.ActiveCfg = Release|x64
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x64.Build.0 = Release|x64
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x86.ActiveCfg = Release|Win32
+		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
