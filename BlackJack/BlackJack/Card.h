@@ -2,10 +2,13 @@
 #include "EValue.h"
 #include "ENumber.h"
 #include "ICard.h"
+
+
 class Card : public ICard
 {
 
 public:
+
 	Card();
 	Card(EValue value, ENumber number);
 	

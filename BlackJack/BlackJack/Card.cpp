@@ -1,11 +1,15 @@
 #include "Card.h"
 
-Card::Card():m_value(EValue::one), m_number(ENumber::one)
+Card::Card()
+	:m_value(EValue::one),
+	 m_number(ENumber::one)
 {
 	//empty
 }
 
-Card::Card(EValue value, ENumber number):m_value(value),m_number(number)
+Card::Card(EValue value, ENumber number)
+	:m_value(value),
+	 m_number(number)
 {
 	//empty
 }
