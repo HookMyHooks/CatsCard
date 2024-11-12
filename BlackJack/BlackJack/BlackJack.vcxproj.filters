@@ -18,6 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+
     <ClInclude Include="EValue.h">
       <Filter>Header Files\API</Filter>
     </ClInclude>
@@ -28,14 +29,30 @@
       <Filter>Header Files\API</Filter>
     </ClInclude>
     <ClInclude Include="Card.h">
+
+    <ClInclude Include="EPlayer.h">
+      <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="EState.h">
+      <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="IGame.h">
+      <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+
     <ClCompile Include="Card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+
+    <ClCompile Include="Game.cpp">
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
