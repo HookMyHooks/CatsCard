@@ -19,12 +19,10 @@ void Deck::InitiateDeck() {
 	}
 }
 
-
 void Deck::ShuffleDeck() {
 	std::random_device rd;
 	std::mt19937 g(rd());
 	std::shuffle(m_cards.begin(), m_cards.end(), g);
-
 }
 
 std::shared_ptr<Card> Deck::GiveCard() {
