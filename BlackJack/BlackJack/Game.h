@@ -35,8 +35,8 @@ private:
 private:
 
 	Deck m_deck;
-	std::vector<ICardPtr>m_cardsPlayer1;
-	std::vector<ICardPtr>m_cardsPlayer2;
+	std::vector<CardPtr>m_cardsPlayer1;
+	std::vector<CardPtr>m_cardsPlayer2;
 	EPlayer m_currentPlayer;
 	EState m_currentState;
 

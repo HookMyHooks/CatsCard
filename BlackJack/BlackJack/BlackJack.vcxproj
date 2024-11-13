@@ -131,7 +131,6 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="ENumber.h" />
     <ClInclude Include="EValue.h" />
-    <ClInclude Include="ICard.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />

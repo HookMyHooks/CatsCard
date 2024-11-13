@@ -7,7 +7,7 @@ int main()
 	ENumber value = card.GetNumber();
 	std::cout << (int)value;*/
 
-	Deck deck;
+	/*Deck deck;
 	int count = 1;
 
 	for (auto& el : deck.GetCards())
@@ -17,7 +17,7 @@ int main()
 
 		std::cout << "Count: " << count << " with value: " << (int)value << " and Number: " << (int)number << std::endl;
 		count++;
-	}
+	}*/
 
 	return 0;
 }

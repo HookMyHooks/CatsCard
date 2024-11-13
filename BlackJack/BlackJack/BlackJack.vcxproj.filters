@@ -33,9 +33,6 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ICard.h">
-      <Filter>Header Files\API</Filter>
-    </ClInclude>
     <ClInclude Include="IGame.h">
       <Filter>Header Files\API</Filter>
     </ClInclude>

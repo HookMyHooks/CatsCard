@@ -1,10 +1,10 @@
 #pragma once
 #include "EValue.h"
 #include "ENumber.h"
-#include "ICard.h"
 
+#include <memory>
 
-class Card : public ICard
+class Card 
 {
 
 public:
@@ -13,8 +13,8 @@ public:
 	Card(EValue value, ENumber number);
 	
 	//ICard methods
-	EValue GetValue() const override;
-	ENumber GetNumber() const override;
+	EValue GetValue() const ;
+	ENumber GetNumber() const ;
 	
 
 	~Card();
@@ -23,6 +23,8 @@ private:
 	EValue m_value;
 	ENumber m_number;
 };
+
+using CardPtr = std::shared_ptr<Card>;
 
 static EValue ConvertNumberToValue(ENumber number)
 {
