@@ -22,6 +22,11 @@ EState Game::GetCurrentState() const
 	return m_currentState;
 }
 
+Deck Game::GetDeck() const
+{
+	return m_deck;
+}
+
 void Game::TakeCard()
 {
 	//take card and add to vector cards

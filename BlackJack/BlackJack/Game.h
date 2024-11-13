@@ -13,7 +13,8 @@ public:
 	// IGame methods
 	EPlayer GetCurrentPlayer() const override;
 	EState GetCurrentState() const override;
-
+	Deck GetDeck() const override;
+	
 	void TakeCard() override;
 	void HoldCards() override;
 
