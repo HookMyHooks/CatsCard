@@ -4,6 +4,7 @@ Game::Game()
 	:m_currentPlayer(EPlayer::Player1),
 	 m_currentState(EState::HoldCard)
 {
+	m_deck.InitiateDeck();
 }
 
 IGamePtr IGame::Produce()
@@ -34,14 +35,14 @@ void Game::HoldCards()
 
 void Game::InitiateGame()
 {
-	//shuffle Deck
+	m_deck.ShuffleDeck();
 	InitiateCards(EPlayer::Player1);
 	InitiateCards(EPlayer::Player2);
 }
 
 void Game::ResetGame()
 {
-	//deck reinitializat and shuffle
+	m_deck.InitiateDeck();
 	m_cardsPlayer1.clear();
 	m_cardsPlayer2.clear();
 }

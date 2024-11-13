@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IGame.h"
-#include "ICard.h"
+#include "Deck.h"
 
 #include <vector>
 
@@ -34,7 +34,7 @@ private:
 
 private:
 
-	int m_deck;
+	Deck m_deck;
 	std::vector<ICardPtr>m_cardsPlayer1;
 	std::vector<ICardPtr>m_cardsPlayer2;
 	EPlayer m_currentPlayer;

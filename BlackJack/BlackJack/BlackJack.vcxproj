@@ -135,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClInclude Include="EPlayer.h" />
     <ClInclude Include="EState.h" />
     <ClInclude Include="Game.h" />
