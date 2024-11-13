@@ -24,3 +24,7 @@ ENumber Card::GetNumber() const
 	return m_number;
 }
 
+Card::~Card()
+{
+	//empty
+}

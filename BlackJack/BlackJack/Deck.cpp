@@ -15,8 +15,7 @@ void Deck::InitiateDeck() {
 		for (int number = static_cast<int>(ENumber::A); number <= static_cast<int>(ENumber::K); ++number) {
 			ENumber rank = static_cast<ENumber>(number);
 			EValue value = ConvertNumberToValue(rank);
-			//needs to be fixed
-			//m_cards.push_back(std::make_shared<ICard>(value, rank));
+			m_cards.push_back(std::make_shared<ICard>(value, rank));
 		}
 	}
 }
