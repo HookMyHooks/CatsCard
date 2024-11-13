@@ -11,11 +11,12 @@ void Deck::InitiateDeck() {
 	m_cards.clear();
 
 	for (int suit = 0; suit < 4; ++suit) {
-		for (int number = static_cast<int>(ENumber::A); number <= static_cast<int>(ENumber::K); ++number) {
+		for (int number = static_cast<int>(ENumber::A); number <= static_cast<int>(ENumber::K); number++) {
 			ENumber rank = static_cast<ENumber>(number);
 			EValue value = ConvertNumberToValue(rank);
 			m_cards.push_back(std::make_shared<Card>(value, rank));
 		}
+
 	}
 }
 

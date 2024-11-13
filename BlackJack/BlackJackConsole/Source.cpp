@@ -8,10 +8,10 @@ int main()
 	ENumber value = card.GetNumber();
 	std::cout << (int)value;*/
 
-	Deck deck;
+	Deck* deck=new Deck();
 	int count = 1;
 
-	for (auto& el : deck.GetCards())
+	for (auto& el : deck->GetCards())
 	{
 		ENumber number = el->GetNumber();
 		EValue value = el->GetValue();
