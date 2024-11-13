@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJack", "BlackJack\BlackJack.vcxproj", "{E7C6480E-F928-4168-A6DD-058C520AB88F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackTests", "BlackJackTests\BlackJackTests.vcxproj", "{930F325A-9A4F-4FDA-A248-E104884B55F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7C6480E-F928-4168-A6DD-058C520AB88F} = {E7C6480E-F928-4168-A6DD-058C520AB88F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
