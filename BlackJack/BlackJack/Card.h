@@ -16,7 +16,7 @@ public:
 	EValue GetValue() const override;
 	ENumber GetNumber() const override;
 
-	~Card();
+	~Card() {};
 
 private:
 	EValue m_value;
