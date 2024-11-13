@@ -1,7 +1,7 @@
 #pragma once
 #include "EState.h"
 #include "EPlayer.h"
-
+#include "Deck.h"
 #include "memory"
 
 using IGamePtr = std::shared_ptr<class IGame>;
