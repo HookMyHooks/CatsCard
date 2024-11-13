@@ -15,7 +15,6 @@ public:
 	//ICard methods
 	EValue GetValue() const override;
 	ENumber GetNumber() const override;
-	static EValue ConvertNumberToValue(ENumber number);
 
 	~Card();
 
