@@ -13,10 +13,15 @@ void Deck::InitiateDeck() {
 	for (int suit = 0; suit < 4; ++suit) {
 		for (int number = static_cast<int>(ENumber::A); number <= static_cast<int>(ENumber::K); ++number) {
 			ENumber rank = static_cast<ENumber>(number);
-			EValue value = Card::ConvertNumberToValue(rank);
+			EValue value = ConvertNumberToValue(rank);
 			m_cards.push_back(std::make_shared<Card>(value, rank));
 		}
 	}
+}
+
+std::vector<std::shared_ptr<Card>> Deck::GetCards() const
+{
+	return m_cards;
 }
 
 void Deck::ShuffleDeck() {

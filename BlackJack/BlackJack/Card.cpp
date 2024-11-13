@@ -23,21 +23,6 @@ ENumber Card::GetNumber() const
 {
 	return m_number;
 }
-EValue Card::ConvertNumberToValue(ENumber number)
-{
-    switch (number) {
-    case ENumber::A:
-        return EValue::eleven;
-    case ENumber::ten:
-    case ENumber::J:
-    case ENumber::Q:
-    case ENumber::K:
-        return EValue::ten; 
-    default:
-        
-        return static_cast<EValue>(number);
-    }
-}
 
 Card::~Card()
 {

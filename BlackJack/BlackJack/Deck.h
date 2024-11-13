@@ -9,7 +9,9 @@ public:
     Deck();                         
     void ShuffleDeck();            
     std::shared_ptr<Card> GiveCard(); 
-    void InitiateDeck();            
+    void InitiateDeck();     
+
+    std::vector<std::shared_ptr<Card>> GetCards()const;
 
 
 private:
