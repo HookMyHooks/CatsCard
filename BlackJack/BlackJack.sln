@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJack", "BlackJack\Blac
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackTests", "BlackJackTests\BlackJackTests.vcxproj", "{930F325A-9A4F-4FDA-A248-E104884B55F2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Frontend", "Frontend\Frontend.vcxproj", "{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x64.Build.0 = Release|x64
 		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x86.ActiveCfg = Release|Win32
 		{930F325A-9A4F-4FDA-A248-E104884B55F2}.Release|x86.Build.0 = Release|Win32
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Debug|x64.ActiveCfg = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Debug|x64.Build.0 = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Debug|x86.ActiveCfg = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Debug|x86.Build.0 = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Release|x64.ActiveCfg = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Release|x64.Build.0 = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Release|x86.ActiveCfg = Debug|x64
+		{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}.Release|x86.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
