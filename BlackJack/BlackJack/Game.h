@@ -14,9 +14,10 @@ public:
 	EPlayer GetCurrentPlayer() const override;
 	EState GetCurrentState() const override;
 	Deck GetDeck() const override;
+	std::vector<CardPtr> GetCardsForPlayer(EPlayer player)const override;
 	
-	void TakeCard() override;
-	void HoldCards() override;
+	int TakeCard() override;
+	int HoldCards() override;
 
 	//other methods
 

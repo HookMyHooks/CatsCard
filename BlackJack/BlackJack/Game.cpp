@@ -5,6 +5,8 @@ Game::Game()
 	 m_currentState(EState::HoldCard)
 {
 	m_deck.InitiateDeck();
+	m_deck.ShuffleDeck();
+	InitiateGame();
 }
 
 IGamePtr IGame::Produce()
@@ -27,15 +29,35 @@ Deck Game::GetDeck() const
 	return m_deck;
 }
 
-void Game::TakeCard()
+std::vector<CardPtr> Game::GetCardsForPlayer(EPlayer player) const
 {
-	//take card and add to vector cards
-	SwitchPlayers();
+	if (player == EPlayer::Player1)
+	{
+		return m_cardsPlayer1;
+	}
+	return m_cardsPlayer2;
 }
 
-void Game::HoldCards()
+int Game::TakeCard()
+{
+	//take card and add to vector cards
+	if (m_currentPlayer == EPlayer::Player1)
+	{
+		m_cardsPlayer1.push_back(m_deck.GiveCard());
+	}
+	else
+	{
+		m_cardsPlayer2.push_back(m_deck.GiveCard());
+
+	}
+	SwitchPlayers();
+	return CalculatePoints();
+}
+
+int Game::HoldCards()
 {
 	SwitchPlayers();
+	return CalculatePoints();
 }
 
 void Game::InitiateGame()
@@ -54,11 +76,36 @@ void Game::ResetGame()
 
 void Game::InitiateCards(const EPlayer player)
 {
+	if (player == EPlayer::Player1)
+	{
+		m_cardsPlayer1.push_back(m_deck.GiveCard());
+		m_cardsPlayer1.push_back(m_deck.GiveCard());
+	}
+	else
+	{
+		m_cardsPlayer2.push_back(m_deck.GiveCard());
+		m_cardsPlayer2.push_back(m_deck.GiveCard());
+	}
 }
 
 int Game::CalculatePoints()
 {
-	return 0;
+	int points = 0;
+	if (m_currentPlayer == EPlayer::Player1)
+	{
+		for (const auto& el : m_cardsPlayer2)
+		{
+			points += (int)el->GetValue();
+		}
+	}
+	else
+	{
+		for (const auto& el : m_cardsPlayer1)
+		{
+			points += (int)el->GetValue();
+		}
+	}
+	return points;
 }
 
 bool Game::CheckWin()

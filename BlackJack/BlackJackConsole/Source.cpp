@@ -8,7 +8,7 @@ int main()
 	ENumber value = card.GetNumber();
 	std::cout << (int)value;*/
 
-	Deck* deck=new Deck();
+	/*Deck* deck=new Deck();
 	int count = 1;
 
 	for (auto& el : deck->GetCards())
@@ -18,19 +18,75 @@ int main()
 
 		std::cout << "Count: " << count << " with value: " << (int)value << " and Number: " << (int)number << std::endl;
 		count++;
-	}
-
-	/*auto game = IGame::Produce();
-	int count = 1;
-
-	for (auto& el : game->GetDeck())
-	{
-		ENumber number = el->GetNumber();
-		EValue value = el->GetValue();
-
-		std::cout << "Count: " << count << " with value: " << (int)value << " and Number: " << (int)number << std::endl;
-		count++;
 	}*/
 
+	auto game = IGame::Produce();
+	int points;
+	std::cout << "Round starts: \n";
+	std::cout << game->GetCurrentPlayer()<<" your cards are: \n";
+	std::vector<CardPtr>cards = game->GetCardsForPlayer(game->GetCurrentPlayer());
+	for (auto el : cards)
+	{
+		std::cout << (int)el->GetNumber() << " " << (int)el->GetValue() << std::endl;
+	}
+	std::cout << "Choose on option: Take Card (1) or HoldCards(2)\n";
+	int option;
+	std::cin >> option;
+	if (option == 1)
+	{
+		 points=game->TakeCard();
+		std::cout << game->GetCurrentPlayer() << " your cards are: \n";
+		std::vector<CardPtr>cards = game->GetCardsForPlayer((EPlayer)(1-(int)game->GetCurrentPlayer()));
+		for (auto el : cards)
+		{
+			std::cout << (int)el->GetNumber() << " " << (int)el->GetValue() << std::endl;
+		}
+		std::cout << "Your current points are: " << points << std::endl;
+	}
+	else if (option==0)
+	{
+		std::cout << "You choose to hold cards\n";
+		points = game->HoldCards();
+		std::cout << "Your current points are: " << points << std::endl;
+
+	}
+	if (points > 21)
+	{
+		std::cout << "You lost!\n";
+	}
+	else
+	{
+		std::cout << game->GetCurrentPlayer() << " your cards are: \n";
+		cards = game->GetCardsForPlayer(game->GetCurrentPlayer());
+		for (auto el : cards)
+		{
+			std::cout << (int)el->GetNumber() << " " << (int)el->GetValue() << std::endl;
+		}
+		std::cout << "Choose on option: Take Card (1) or HoldCards(2)\n";
+
+		std::cin >> option;
+		if (option == 1)
+		{
+			points = game->TakeCard();
+			std::cout << game->GetCurrentPlayer() << " your cards are: \n";
+			std::vector<CardPtr>cards = game->GetCardsForPlayer((EPlayer)(1 - (int)game->GetCurrentPlayer()));
+			for (auto el : cards)
+			{
+				std::cout << (int)el->GetNumber() << " " << (int)el->GetValue() << std::endl;
+			}
+			std::cout << "Your current points are: " << points << std::endl;
+			if (points > 21)
+			{
+				std::cout << "You lost!\n";
+			}
+		}
+		else if (option == 0)
+		{
+			std::cout << "You choose to hold cards\n";
+			points = game->TakeCard();
+			std::cout << "Your current points are: " << points << std::endl;
+
+		}
+	}
 	return 0;
 }
