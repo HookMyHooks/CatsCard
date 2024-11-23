@@ -110,12 +110,20 @@ int Game::CalculatePoints()
 
 bool Game::CheckWin()
 {
-	if (CalculatePoints() > 21)
+	if (CalculatePoints() > 21) //if player has more than 21 points
 	{
 		if (m_currentPlayer == EPlayer::Player1)
 			m_currentState = EState::Player2Win;
 		else
 			m_currentState = EState:: Player1Win;
+		return true;
+	}
+	else if (CalculatePoints() == 21) //if player reaches blackjack
+	{
+		if (m_currentPlayer == EPlayer::Player1)
+			m_currentState = EState::Player1Win;
+		else
+			m_currentState = EState::Player2Win;
 		return true;
 	}
 	return false;

@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJack", "BlackJack\BlackJack.vcxproj", "{E7C6480E-F928-4168-A6DD-058C520AB88F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Frontend", "Frontend\Frontend.vcxproj", "{7B82A2B4-E418-4CF1-A839-4A1FAB67359E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E7C6480E-F928-4168-A6DD-058C520AB88F} = {E7C6480E-F928-4168-A6DD-058C520AB88F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackConsole", "BlackJackConsole\BlackJackConsole.vcxproj", "{2753E60A-185C-4653-9A09-5211C3A68EC9}"
 	ProjectSection(ProjectDependencies) = postProject
