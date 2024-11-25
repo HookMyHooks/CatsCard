@@ -91,22 +91,25 @@ void Game::InitiateCards(const EPlayer player)
 int Game::CalculatePoints()
 {
 	int points = 0;
-	if (m_currentPlayer == EPlayer::Player1)
+	bool hasAce = false; 
+
+	const auto& currentPlayerCards = (m_currentPlayer == EPlayer::Player1) ? m_cardsPlayer1 : m_cardsPlayer2;
+
+	for (const auto& card : currentPlayerCards)
 	{
-		for (const auto& el : m_cardsPlayer2)
-		{
-			points += (int)el->GetValue();
+		points += static_cast<int>(card->GetValue());
+		if (card->GetNumber() == ENumber::A) {
+			hasAce = true;
 		}
 	}
-	else
-	{
-		for (const auto& el : m_cardsPlayer1)
-		{
-			points += (int)el->GetValue();
-		}
+
+	if (hasAce && points + 10 <= 21) {
+		points += 10;
 	}
+
 	return points;
 }
+
 
 bool Game::CheckWin()
 {

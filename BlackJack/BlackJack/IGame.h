@@ -17,7 +17,7 @@ public:
 
 	virtual int TakeCard() = 0;
 	virtual int HoldCards() = 0;
-
+	virtual int CalculatePoints() = 0;
 	static IGamePtr Produce();
 	virtual ~IGame() = default;
 };
