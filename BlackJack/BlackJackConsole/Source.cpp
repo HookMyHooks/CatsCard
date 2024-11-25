@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Deck.h"
 #include "IGame.h"
-
+#include <typeinfo>
 int main()
 {/*
 	Card card (EValue::eight, ENumber::seven);
@@ -21,6 +21,7 @@ int main()
 	}*/
 
 	auto game = IGame::Produce();
+	std::cout << typeid(game).name() << std::endl;
 	int points=0; //added initialization here -> else if first player holds, error 
 	std::cout << "Round starts: \n";
 	std::cout << "Player" << game->GetCurrentPlayer() + 1 <<" your cards are: \n";

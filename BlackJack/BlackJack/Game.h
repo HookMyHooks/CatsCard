@@ -2,7 +2,8 @@
 
 #include "IGame.h"
 
-
+#include "Card.h"
+#include"Deck.h"
 #include <vector>
 
 class Game : public IGame 
@@ -18,6 +19,7 @@ public:
 	
 	int TakeCard() override;
 	int HoldCards() override;
+	void SwitchPlayers();
 
 	//other methods
 
@@ -32,7 +34,7 @@ private:
 	bool CheckWin();
 	int CalculatePoints();
 
-	void SwitchPlayers();
+	
 
 private:
 

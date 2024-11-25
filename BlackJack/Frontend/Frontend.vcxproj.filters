@@ -26,6 +26,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-
+    <ClCompile Include="FrontEnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="FrontEnd.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="FrontEnd.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>

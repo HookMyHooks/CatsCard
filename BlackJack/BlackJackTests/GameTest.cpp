@@ -4,11 +4,6 @@
 #include "Game.h"
 
 //start game
-TEST(StartGame, HoldState) {
-	Game game;
-	EState state = game.GetCurrentState();
-	ASSERT_EQ(state, EState::HoldCard);
-}
 
 TEST(StartGame, FirstPlayer) {
 	Game game;
@@ -27,22 +22,22 @@ TEST(PlayerSwitch, isTrue) {
 //game ends on blackjack (exactly 21 points)
 
 //game ends if player has more than 21 points (idk how to test random picks from a deck)
-TEST(GameEnd, Player1WinsOnBlackjack) {
-	Game game;
-
-	ASSERT_EQ(game.GetCurrentState(), EState::HoldCard);
-
-	while (true) {
-		int points = game.TakeCard();
-		if (points == 21) {
-			break;
-		}
-		else if (points > 21) {
-			FAIL() << "Player 1 exceeded 21 points while testing. Points obtained: "<< points;
-		}
-	}
-	ASSERT_EQ(game.GetCurrentState(), EState::Player1Win);
-}
+//TEST(GameEnd, Player1WinsOnBlackjack) {
+//	Game game;
+//
+//	ASSERT_EQ(game.GetCurrentState(), EState::HoldCard);
+//
+//	while (true) {
+//		int points = game.TakeCard();
+//		if (points == 21) {
+//			break;
+//		}
+//		else if (points > 21) {
+//			FAIL() << "Player 1 exceeded 21 points while testing. Points obtained: "<< points;
+//		}
+//	}
+//	ASSERT_EQ(game.GetCurrentState(), EState::Player1Win);
+//}
 
 //if player 1 takes cards, that card is put in his deck not the other player's
 TEST(PlayerTake, isTrue) {

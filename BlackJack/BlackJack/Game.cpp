@@ -2,7 +2,7 @@
 
 Game::Game()
 	:m_currentPlayer(EPlayer::Player1),
-	 m_currentState(EState::HoldCard)
+	 m_currentState(EState::InProgress)
 {
 	m_deck.InitiateDeck();
 	m_deck.ShuffleDeck();
@@ -40,7 +40,6 @@ std::vector<CardPtr> Game::GetCardsForPlayer(EPlayer player) const
 
 int Game::TakeCard()
 {
-	//take card and add to vector cards
 	if (m_currentPlayer == EPlayer::Player1)
 	{
 		m_cardsPlayer1.push_back(m_deck.GiveCard());
@@ -48,16 +47,18 @@ int Game::TakeCard()
 	else
 	{
 		m_cardsPlayer2.push_back(m_deck.GiveCard());
-
 	}
 	SwitchPlayers();
+	bool ok = CheckWin();
 	return CalculatePoints();
 }
 
 int Game::HoldCards()
 {
 	SwitchPlayers();
+	bool ok = CheckWin();
 	return CalculatePoints();
+	
 }
 
 void Game::InitiateGame()
@@ -129,6 +130,7 @@ bool Game::CheckWin()
 			m_currentState = EState::Player2Win;
 		return true;
 	}
+	m_currentState = EState::InProgress;
 	return false;
 }
 
