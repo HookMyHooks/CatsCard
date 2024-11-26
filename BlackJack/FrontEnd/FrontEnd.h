@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include "qmessagebox.h"
 #include "ui_FrontEnd.h"
 #include "IGame.h" 
 
@@ -14,7 +15,7 @@ public:
     ~FrontEnd();
 
     //IGameListener
-    void OnWin(EPlayer& player) override;
+    void OnWin() override;
     void OnReset() override;
 
     // other methods
@@ -25,6 +26,7 @@ private slots:
     void on_deckButton_clicked();
     void on_holdCardButton_clicked();
     void updateUI();
+    void onOkButtonClicked();
 
 private:
     Ui::FrontEndClass* ui;
@@ -34,4 +36,5 @@ private:
 
     QList<QLabel*> player1CardLabels;
     QList<QLabel*> player2CardLabels;
+    QMessageBox m_msgBoxEndGame;
 };

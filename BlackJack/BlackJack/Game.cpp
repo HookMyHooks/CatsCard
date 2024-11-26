@@ -7,7 +7,6 @@ Game::Game()
 	 m_player2Hold(false)
 {
 	m_deck.InitiateDeck();
-	m_deck.ShuffleDeck();
 	InitiateGame();
 }
 
@@ -69,10 +68,13 @@ void Game::TakeCard()
 		m_cardsPlayer2.push_back(m_deck.GiveCard());
 	}
 	
-	bool ok = CheckWin();
+	CalculatePoints(m_currentPlayer);
+	CheckWin();
 	
-	SwitchPlayers();
-	 CalculatePoints(m_currentPlayer);
+		SwitchPlayers();
+	
+	
+	
 }
 
 void Game::HoldCards()
@@ -92,7 +94,6 @@ void Game::HoldCards()
 	}
 
 	SwitchPlayers();
-	CalculatePoints(m_currentPlayer);
 }
 
 
@@ -144,8 +145,15 @@ int Game::CalculatePoints(EPlayer player)
 		points += 10;
 	}
 
-	CheckWin();
 	return points;
+}
+
+void Game::NotifyListenersOnWin() const
+{
+	for (auto it : m_Listeners)
+	{
+		it->OnWin();
+	}
 }
 
 
@@ -169,7 +177,7 @@ bool Game::CheckWin()
 		{
 			m_currentState = EState::Player2Win;
 		}
-
+		NotifyListenersOnWin();
 		return true;
 	}
 
@@ -177,11 +185,13 @@ bool Game::CheckWin()
 	if (currentPlayerPoints > 21)
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player2Win : EState::Player1Win;
+		NotifyListenersOnWin();
 		return true;
 	}
 	else if (currentPlayerPoints == 21)
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player1Win : EState::Player2Win;
+		NotifyListenersOnWin();
 		return true;
 	}
 

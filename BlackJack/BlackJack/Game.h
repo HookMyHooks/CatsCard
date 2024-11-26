@@ -39,7 +39,7 @@ private:
 	int CalculatePoints(EPlayer player);
 
 	//Notify Listeners
-
+	void NotifyListenersOnWin() const;
 	
 
 private:

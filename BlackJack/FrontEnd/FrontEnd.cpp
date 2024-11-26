@@ -3,13 +3,18 @@
 #include <QLabel>
 
 FrontEnd::FrontEnd(QWidget* parent)
-    : QMainWindow(parent), ui(new Ui::FrontEndClass), m_game(IGame::Produce())
+    : QMainWindow(parent), ui(new Ui::FrontEndClass)
 {
     ui->setupUi(this);
     player1CardLabels = { ui->player1CardLabel1, ui->player1CardLabel2, ui->player1CardLabel3 };
     player2CardLabels = { ui->player2CardLabel1, ui->player2CardLabel2, ui->player2CardLabel3 };
-    
-    updateUI();
+    QObject::connect(&m_msgBoxEndGame, &QMessageBox::buttonClicked, [&](QAbstractButton* button) {
+        if (m_msgBoxEndGame.buttonRole(button) == QMessageBox::AcceptRole) {
+            onOkButtonClicked();
+        }
+        });
+  //  updateUI();
+
 }
 
 FrontEnd::~FrontEnd()
@@ -23,8 +28,20 @@ void FrontEnd::on_deckButton_clicked()
     updateUI();
 }
 
-void FrontEnd::OnWin(EPlayer& player)
+void FrontEnd::OnWin()
 {
+    QString msg;
+    EState currentState = m_game->GetCurrentState();
+    if (currentState == EState::Player1Win)
+        msg="Player 1 Wins!";
+    else if (currentState == EState::Player2Win)
+       msg="Player 2 Wins!";
+    else if (currentState == EState::Draw)
+        msg="It's a Draw!";
+
+    m_msgBoxEndGame.setText(msg);
+
+    m_msgBoxEndGame.exec();
 }
 
 void FrontEnd::OnReset()
@@ -52,16 +69,10 @@ void FrontEnd::updateUI()
     displayCards(EPlayer(0));
     displayCards(EPlayer(1));
 
-    EState currentState = m_game->GetCurrentState();
-    if (currentState == EState::Player1Win)
-        ui->statusLabel->setText("Player 1 Wins!");
-    else if (currentState == EState::Player2Win)
-        ui->statusLabel->setText("Player 2 Wins!");
-    else if (currentState == EState::Draw)
-        ui->statusLabel->setText("It's a Draw!");
-    else
-        ui->statusLabel->setText(currentPlayer == EPlayer::Player1 ? "Player 1's Turn" : "Player 2's Turn");
+    ui->statusLabel->setText(currentPlayer == EPlayer::Player1 ? "Player 1's Turn" : "Player 2's Turn");
 
+    //check to elimini
+    EState currentState = m_game->GetCurrentState();
     bool gameInProgress = (currentState == EState::InProgress);
     ui->deckButton->setEnabled(gameInProgress);
     ui->holdCardButton->setEnabled(gameInProgress);
@@ -70,6 +81,11 @@ void FrontEnd::updateUI()
         ui->Player1CardContainer->setVisible(1);
         ui->Player2CardContainer->setVisible(1);
     }
+}
+
+void FrontEnd::onOkButtonClicked()
+{
+    close();
 }
 
 void FrontEnd::displayCards(EPlayer player)
