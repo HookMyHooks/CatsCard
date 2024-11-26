@@ -2,7 +2,9 @@
 
 Game::Game()
 	:m_currentPlayer(EPlayer::Player1),
-	 m_currentState(EState::InProgress)
+	 m_currentState(EState::InProgress),
+	 m_player1Hold(false),
+	 m_player2Hold(false)
 {
 	m_deck.InitiateDeck();
 	m_deck.ShuffleDeck();
@@ -38,6 +40,7 @@ std::vector<CardPtr> Game::GetCardsForPlayer(EPlayer player) const
 	return m_cardsPlayer2;
 }
 
+
 int Game::TakeCard()
 {
 	if (m_currentPlayer == EPlayer::Player1)
@@ -48,18 +51,33 @@ int Game::TakeCard()
 	{
 		m_cardsPlayer2.push_back(m_deck.GiveCard());
 	}
-	SwitchPlayers();
+	
 	bool ok = CheckWin();
-	return CalculatePoints();
+	SwitchPlayers();
+	return CalculatePoints(m_currentPlayer);
 }
 
 int Game::HoldCards()
 {
+	if (m_currentPlayer == EPlayer::Player1)
+	{
+		m_player1Hold = true;
+	}
+	else
+	{
+		m_player2Hold = true;
+	}
+
+	if (m_player1Hold && m_player2Hold)
+	{
+		CheckWin();
+		return 0; 
+	}
+
 	SwitchPlayers();
-	bool ok = CheckWin();
-	return CalculatePoints();
-	
+	return CalculatePoints(m_currentPlayer);
 }
+
 
 void Game::InitiateGame()
 {
@@ -89,22 +107,23 @@ void Game::InitiateCards(const EPlayer player)
 	}
 }
 
-int Game::CalculatePoints()
+int Game::CalculatePoints(EPlayer player)
 {
 	int points = 0;
-	bool hasAce = false; 
+	bool hasAce = false;
 
-	const auto& currentPlayerCards = (m_currentPlayer == EPlayer::Player1) ? m_cardsPlayer1 : m_cardsPlayer2;
+	const auto& playerCards = (player == EPlayer::Player1) ? m_cardsPlayer1 : m_cardsPlayer2;
 
-	for (const auto& card : currentPlayerCards)
+	for (const auto& card : playerCards)
 	{
 		points += static_cast<int>(card->GetValue());
-		if (card->GetNumber() == ENumber::A) {
+		if (card->GetNumber() == ENumber::A)
+		{
 			hasAce = true;
 		}
 	}
-
-	if (hasAce && points + 10 <= 21) {
+	if (hasAce && points + 10 <= 21)
+	{
 		points += 10;
 	}
 
@@ -112,26 +131,55 @@ int Game::CalculatePoints()
 }
 
 
+
 bool Game::CheckWin()
 {
-	if (CalculatePoints() > 21) //if player has more than 21 points
+	if (m_player1Hold && m_player2Hold)
 	{
-		if (m_currentPlayer == EPlayer::Player1)
+		int player1Points = CalculatePoints(EPlayer::Player1);
+		int player2Points = CalculatePoints(EPlayer::Player2);
+
+		if (player1Points > 21 && player2Points > 21)
+		{
+			m_currentState = EState::Draw;
+		}
+		else if (player1Points > 21)
+		{
 			m_currentState = EState::Player2Win;
-		else
-			m_currentState = EState:: Player1Win;
-		return true;
-	}
-	else if (CalculatePoints() == 21) //if player reaches blackjack
-	{
-		if (m_currentPlayer == EPlayer::Player1)
+		}
+		else if (player2Points > 21)
+		{
 			m_currentState = EState::Player1Win;
+		}
+		else if (player1Points == player2Points)
+		{
+			m_currentState = EState::Draw;
+		}
+		else if (player1Points > player2Points)
+		{
+			m_currentState = EState::Player1Win;
+		}
 		else
+		{
 			m_currentState = EState::Player2Win;
+		}
+
 		return true;
 	}
-	m_currentState = EState::InProgress;
-	return false;
+
+	int currentPlayerPoints = CalculatePoints(m_currentPlayer);
+	if (currentPlayerPoints > 21)
+	{
+		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player2Win : EState::Player1Win;
+		return true;
+	}
+	else if (currentPlayerPoints == 21)
+	{
+		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player1Win : EState::Player2Win;
+		return true;
+	}
+
+	return false; 
 }
 
 void Game::SwitchPlayers()

@@ -16,6 +16,7 @@ public:
 	EState GetCurrentState() const override;
 	Deck GetDeck() const override;
 	std::vector<CardPtr> GetCardsForPlayer(EPlayer player)const override;
+	//void SetCardsForPlayer(std::vector <CardPtr>, EPlayer player ) override;
 	
 	int TakeCard() override;
 	int HoldCards() override;
@@ -32,7 +33,7 @@ private:
 	void InitiateCards(const EPlayer player);
 
 	bool CheckWin();
-	int CalculatePoints();
+	int CalculatePoints(EPlayer player);
 
 	
 
@@ -43,5 +44,7 @@ private:
 	std::vector<CardPtr>m_cardsPlayer2;
 	EPlayer m_currentPlayer;
 	EState m_currentState;
+	bool m_player1Hold; 
+	bool m_player2Hold;
 
 };

@@ -47,6 +47,11 @@ void FrontEnd::updateUI()
     bool gameInProgress = (currentState == EState::InProgress);
     ui->takeCardButton->setEnabled(gameInProgress);
     ui->holdCardButton->setEnabled(gameInProgress);
+    if (!gameInProgress)
+    {
+        ui->player1CardList->setVisible(1);
+        ui->player2CardList->setVisible(1);
+    }
 }
 
 void FrontEnd::displayCards(EPlayer player)

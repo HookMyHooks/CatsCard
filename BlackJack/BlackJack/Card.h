@@ -30,7 +30,7 @@ static EValue ConvertNumberToValue(ENumber number)
 {
 	switch (number) {
 	case ENumber::A:
-		return EValue::eleven; //or 1 depending on the player
+		return EValue::one; //or 1 depending on the player
 	case ENumber::ten:
 	case ENumber::J:
 	case ENumber::Q:
