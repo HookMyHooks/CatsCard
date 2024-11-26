@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+﻿#include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
 #include "Game.h"
@@ -49,3 +49,28 @@ TEST(PlayerTake, isTrue) {
 	ASSERT_EQ(deckSizePlayer2, 2);
 }
 
+TEST(PlayerHold, Player1Holds) {
+	Game game;
+	game.HoldCards();  
+	ASSERT_TRUE(game.GetCurrentState() == EState::InProgress);
+
+	game.HoldCards();  
+	ASSERT_TRUE(game.GetCurrentState() == EState::Player1Win || game.GetCurrentState() == EState::Player2Win || game.GetCurrentState() == EState::Draw);
+}
+
+TEST(GameEnd, Player1WinsOnBlackjack) {
+	Game game;
+
+	game.GetCardsForPlayer(EPlayer::Player1).clear();
+	game.GetCardsForPlayer(EPlayer::Player2).clear();
+
+	game.GetCardsForPlayer(EPlayer::Player1).push_back(std::make_shared<Card>(EValue::ten, ENumber::J));
+	game.GetCardsForPlayer(EPlayer::Player1).push_back(std::make_shared<Card>(EValue::eleven, ENumber::A));
+
+	game.GetCardsForPlayer(EPlayer::Player2).push_back(std::make_shared<Card>(EValue::ten, ENumber::J));
+
+	game.HoldCards(); 
+	game.HoldCards();
+
+	ASSERT_EQ(game.GetCurrentState(), EState::Player1Win);
+}
