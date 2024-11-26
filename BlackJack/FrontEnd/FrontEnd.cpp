@@ -62,7 +62,7 @@ void FrontEnd::displayCards(EPlayer player)
     auto cards = m_game->GetCardsForPlayer(player);
     for (const auto& card : cards)
     {
-        QString cardText = QString::fromStdString(std::to_string(static_cast<int>(card->GetNumber())));
+        QString cardText = QString::fromStdString(ConvertNumberToString(card->GetNumber()));
         cardListWidget->addItem(cardText);
     }
 }

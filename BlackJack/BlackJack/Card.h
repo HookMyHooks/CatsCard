@@ -1,8 +1,9 @@
 #pragma once
 #include "EValue.h"
 #include "ENumber.h"
-
+#include <iostream>
 #include <memory>
+#include<sstream>
 
 class Card 
 {
@@ -39,5 +40,25 @@ static EValue ConvertNumberToValue(ENumber number)
 	default:
 
 		return static_cast<EValue>(number);
+	}
+}
+
+static std::string ConvertNumberToString(ENumber number)
+{
+	switch (number)
+	{
+	case ENumber::A:
+		return "A";
+	case ENumber::J:
+		return "J";
+	case ENumber::Q:
+		return "Q";
+	case ENumber::K:
+		return "K";
+	default:
+		std::ostringstream oss;
+		oss << static_cast<int>(number);
+		return oss.str();
+
 	}
 }
