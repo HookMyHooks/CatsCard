@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/cards">
+        <file>button_exit.png</file>
+        <file>button_play.png</file>
+        <file>card_2.png</file>
+        <file>card_3.png</file>
+        <file>card_4.png</file>
+        <file>card_5.png</file>
+        <file>card_6.png</file>
+        <file>card_7.png</file>
+        <file>card_8.png</file>
+        <file>card_9.png</file>
+        <file>card_10.png</file>
+        <file>card_back.png</file>
+        <file>card_j.png</file>
+        <file>card_k.png</file>
+        <file>card_q.png</file>
+        <file>cursor.png</file>
+    </qresource>
+</RCC>
