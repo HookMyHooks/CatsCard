@@ -14,7 +14,7 @@ public:
     ~FrontEnd();
 
     //IGameListener
-    void OnWin() override;
+    void OnWin(EPlayer& player) override;
     void OnReset() override;
 
     // other methods

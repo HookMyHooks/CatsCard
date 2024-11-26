@@ -70,6 +70,7 @@ int Game::TakeCard()
 	}
 	
 	bool ok = CheckWin();
+	
 	SwitchPlayers();
 	return CalculatePoints(m_currentPlayer);
 }

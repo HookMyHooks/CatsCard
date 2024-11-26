@@ -23,7 +23,7 @@ void FrontEnd::on_deckButton_clicked()
     updateUI();
 }
 
-void FrontEnd::OnWin()
+void FrontEnd::OnWin(EPlayer& player)
 {
 }
 
