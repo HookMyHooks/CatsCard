@@ -66,15 +66,20 @@
   <ItemGroup>
     <ClCompile Include="FrontEnd.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StartWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="FrontEnd.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="FrontEnd.ui" />
+    <QtUic Include="StartWindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="StartWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
