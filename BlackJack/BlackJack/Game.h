@@ -21,8 +21,8 @@ public:
 	 void AddListener(IGameListener* listener) override;
 	 void RemoveListener(IGameListener* listener) override;
 
-	int TakeCard() override;
-	int HoldCards() override;
+	void TakeCard() override;
+	void HoldCards() override;
 	void SwitchPlayers();
 
 	//other methods

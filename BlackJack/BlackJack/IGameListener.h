@@ -9,7 +9,6 @@ public:
 	
 	virtual void OnWin(EPlayer& player) = 0;
 	virtual void OnReset() = 0;
-	virtual void OnTakeCard() = 0;
 
 	virtual ~IGameListener() = default;
 

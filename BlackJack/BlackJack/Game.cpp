@@ -58,7 +58,7 @@ void Game::RemoveListener(IGameListener* listener)
 }
 
 
-int Game::TakeCard()
+void Game::TakeCard()
 {
 	if (m_currentPlayer == EPlayer::Player1)
 	{
@@ -72,10 +72,10 @@ int Game::TakeCard()
 	bool ok = CheckWin();
 	
 	SwitchPlayers();
-	return CalculatePoints(m_currentPlayer);
+	 CalculatePoints(m_currentPlayer);
 }
 
-int Game::HoldCards()
+void Game::HoldCards()
 {
 	if (m_currentPlayer == EPlayer::Player1)
 	{
@@ -89,11 +89,10 @@ int Game::HoldCards()
 	if (m_player1Hold && m_player2Hold)
 	{
 		CheckWin();
-		return 0; 
 	}
 
 	SwitchPlayers();
-	return CalculatePoints(m_currentPlayer);
+	CalculatePoints(m_currentPlayer);
 }
 
 
@@ -145,6 +144,7 @@ int Game::CalculatePoints(EPlayer player)
 		points += 10;
 	}
 
+	CheckWin();
 	return points;
 }
 
@@ -157,19 +157,7 @@ bool Game::CheckWin()
 		int player1Points = CalculatePoints(EPlayer::Player1);
 		int player2Points = CalculatePoints(EPlayer::Player2);
 
-		if (player1Points > 21 && player2Points > 21)
-		{
-			m_currentState = EState::Draw;
-		}
-		else if (player1Points > 21)
-		{
-			m_currentState = EState::Player2Win;
-		}
-		else if (player2Points > 21)
-		{
-			m_currentState = EState::Player1Win;
-		}
-		else if (player1Points == player2Points)
+		if (player1Points == player2Points)
 		{
 			m_currentState = EState::Draw;
 		}
