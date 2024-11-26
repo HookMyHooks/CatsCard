@@ -40,6 +40,23 @@ std::vector<CardPtr> Game::GetCardsForPlayer(EPlayer player) const
 	return m_cardsPlayer2;
 }
 
+void Game::AddListener(IGameListener* listener)
+{
+	m_Listeners.emplace_back(listener);
+
+}
+
+void Game::RemoveListener(IGameListener* listener)
+{
+	auto func = [listener](IGameListener* el)
+		{
+			return el == listener;
+		};
+
+	m_Listeners.erase(std::remove_if(m_Listeners.begin(), m_Listeners.end(), func));
+
+}
+
 
 int Game::TakeCard()
 {

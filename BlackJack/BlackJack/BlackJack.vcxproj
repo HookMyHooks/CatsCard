@@ -132,6 +132,7 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="ENumber.h" />
     <ClInclude Include="EValue.h" />
+    <ClInclude Include="IGameListener.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Card.cpp" />

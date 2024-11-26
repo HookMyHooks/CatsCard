@@ -18,6 +18,9 @@ public:
 	std::vector<CardPtr> GetCardsForPlayer(EPlayer player)const override;
 	//void SetCardsForPlayer(std::vector <CardPtr>, EPlayer player ) override;
 	
+	 void AddListener(IGameListener* listener) override;
+	 void RemoveListener(IGameListener* listener) override;
+
 	int TakeCard() override;
 	int HoldCards() override;
 	void SwitchPlayers();
@@ -42,6 +45,7 @@ private:
 	Deck m_deck;
 	std::vector<CardPtr>m_cardsPlayer1;
 	std::vector<CardPtr>m_cardsPlayer2;
+	GameListenerList m_Listeners;
 	EPlayer m_currentPlayer;
 	EState m_currentState;
 	bool m_player1Hold; 
