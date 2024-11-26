@@ -7,7 +7,6 @@ class IGameListener
 {
 public:
 	
-	
 	virtual void OnWin() = 0;
 	virtual void OnReset() = 0;
 

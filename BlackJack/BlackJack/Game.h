@@ -38,6 +38,8 @@ private:
 	bool CheckWin();
 	int CalculatePoints(EPlayer player);
 
+	//Notify Listeners
+
 	
 
 private:

@@ -2,7 +2,7 @@
 
 #include <QWidget>
 #include "ui_FrontEnd.h"
-#include "Game.h" // Include the interface instead of the concrete class
+#include "IGame.h" // Include the interface instead of the concrete class
 
 
 class FrontEnd : public QMainWindow
@@ -20,7 +20,7 @@ private slots:
 
 private:
     Ui::FrontEndClass* ui;
-    std::shared_ptr<IGame> m_game; // Use the interface pointer
+    IGamePtr m_game; // Use the interface pointer
     void displayCards(EPlayer player);
     void displayCardImage(ENumber card, QLabel* label);
 

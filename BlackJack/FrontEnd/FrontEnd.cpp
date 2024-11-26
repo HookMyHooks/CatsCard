@@ -8,7 +8,8 @@ FrontEnd::FrontEnd(QWidget* parent)
     ui->setupUi(this);
     player1CardLabels = { ui->player1CardLabel1, ui->player1CardLabel2, ui->player1CardLabel3 };
     player2CardLabels = { ui->player2CardLabel1, ui->player2CardLabel2, ui->player2CardLabel3 };
-
+    m_game = IGame::Produce();
+    m_game->AddListener(*this);
     updateUI();
 }
 
