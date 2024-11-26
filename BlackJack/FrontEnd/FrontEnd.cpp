@@ -13,7 +13,8 @@ FrontEnd::FrontEnd(QWidget* parent)
             onOkButtonClicked();
         }
         });
-  //  updateUI();
+
+
 
 }
 
@@ -51,6 +52,7 @@ void FrontEnd::OnReset()
 void FrontEnd::SetGame(IGamePtr game)
 {
     this->m_game = game;
+    updateUI();
 }
 
 void FrontEnd::on_holdCardButton_clicked()

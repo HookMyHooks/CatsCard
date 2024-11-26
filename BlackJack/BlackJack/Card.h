@@ -17,7 +17,6 @@ public:
 	EValue GetValue() const ;
 	ENumber GetNumber() const ;
 	
-
 	~Card();
 
 private:
