@@ -1,11 +1,11 @@
-#include "FrontEnd.h"
+#include "StartWindow.h"
 #include <QApplication>
 
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
 
-    FrontEnd w; // FrontEnd handles its own initialization
+    StartWindow w; 
     w.show();
 
     return a.exec();

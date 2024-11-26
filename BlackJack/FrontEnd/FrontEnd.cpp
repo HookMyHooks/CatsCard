@@ -23,6 +23,14 @@ void FrontEnd::on_deckButton_clicked()
     updateUI();
 }
 
+void FrontEnd::OnWin()
+{
+}
+
+void FrontEnd::OnReset()
+{
+}
+
 void FrontEnd::SetGame(IGamePtr game)
 {
     this->m_game = game;
