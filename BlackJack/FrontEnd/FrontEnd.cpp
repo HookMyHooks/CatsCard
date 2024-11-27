@@ -31,6 +31,12 @@ void FrontEnd::on_deckButton_clicked()
 
 void FrontEnd::OnWin()
 {
+    ui->Player1CardContainer->setVisible(1);
+    ui->Player2CardContainer->setVisible(1);
+
+    displayCards(EPlayer(0));
+    displayCards(EPlayer(1));
+
     QString msg;
     EState currentState = m_game->GetCurrentState();
     if (currentState == EState::Player1Win)
