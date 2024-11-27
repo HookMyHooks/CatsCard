@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="FrontEnd.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="StartWindow.cpp" />
@@ -72,6 +73,7 @@
     <QtMoc Include="FrontEnd.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="EndGame.ui" />
     <QtUic Include="FrontEnd.ui" />
     <QtUic Include="StartWindow.ui" />
   </ItemGroup>
@@ -79,6 +81,7 @@
     <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="EndGame.h" />
     <ClInclude Include="StartWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

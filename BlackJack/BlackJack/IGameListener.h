@@ -7,7 +7,7 @@ class IGameListener
 {
 public:
 	
-	virtual void OnWin() = 0;
+	virtual void OnWin(int finalPointsPlayer1, int finalPointsPlayer2) = 0;
 	virtual void OnTakeCard(const EPlayer& player) = 0;
 	virtual void OnReset() = 0;
 

@@ -8,7 +8,8 @@
 #include <QLabel>
 #include <QHBoxLayout>  // Include for QHBoxLayout
 #include <QVBoxLayout>  // (Optional) if you need vertical layouts elsewhere
-#include <QDebug>       
+#include <QDebug>   
+#include "EndGame.h"
 
 
 class FrontEnd : public QMainWindow,public IGameListener
@@ -20,7 +21,7 @@ public:
     ~FrontEnd();
 
     //IGameListener
-    void OnWin() override;
+    void OnWin(int pointsPlayer1, int pointsPlayer2) override;
     void OnReset() override;
     void OnTakeCard(const EPlayer& player) override;
 

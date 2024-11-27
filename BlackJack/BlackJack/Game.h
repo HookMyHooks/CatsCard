@@ -34,7 +34,7 @@ private:
 	int CalculatePoints(EPlayer player);
 
 	//Notify Listeners
-	void NotifyListenersOnWin() const;
+	void NotifyListenersOnWin(int pointsPlayer1,int pointsPlayer2) const;
 	void NotifyListenersOnTakeCard() const;
 	
 private:

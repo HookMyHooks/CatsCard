@@ -32,9 +32,15 @@
     <ClCompile Include="StartWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EndGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="FrontEnd.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="EndGame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -43,6 +49,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="StartWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="EndGame.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

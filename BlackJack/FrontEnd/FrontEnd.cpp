@@ -35,31 +35,17 @@ void FrontEnd::on_deckButton_clicked()
     updateUI();
 }
 
-void FrontEnd::OnWin()
+void FrontEnd::OnWin(int pointsPlayer1,int pointsPlayer2)
 {
-    // Make both card containers visible when the game ends
-    ui->Player1CardContainer->setVisible(true);
-    ui->Player2CardContainer->setVisible(true);
-
-    displayCards(EPlayer::Player1);
-    displayCards(EPlayer::Player2);
-
-    QString msg;
-    EState currentState = m_game->GetCurrentState();
-    if (currentState == EState::Player1Win)
-        msg = "Player 1 Wins!";
-    else if (currentState == EState::Player2Win)
-        msg = "Player 2 Wins!";
-    else if (currentState == EState::Draw)
-        msg = "It's a Draw!";
-
-    m_msgBoxEndGame.setText(msg);
-    m_msgBoxEndGame.exec();
+    int currentState = (int)m_game->GetCurrentState();
+    EndGame* endgame = new EndGame(currentState,pointsPlayer1,pointsPlayer2);
+    endgame->show();
+    this->close();
 }
 
 void FrontEnd::OnReset()
 {
-    // Placeholder for reset functionality
+   
 }
 
 void FrontEnd::OnTakeCard(const EPlayer& player)

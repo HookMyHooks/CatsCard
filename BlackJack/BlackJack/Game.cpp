@@ -142,11 +142,11 @@ int Game::CalculatePoints(EPlayer player)
 	return points;
 }
 
-void Game::NotifyListenersOnWin() const
+void Game::NotifyListenersOnWin(int pointsPlayer1,int pointsPlayer2) const
 {
 	for (auto it : m_Listeners)
 	{
-		it->OnWin();
+		it->OnWin(pointsPlayer1,pointsPlayer2);
 	}
 }
 
@@ -162,11 +162,10 @@ void Game::NotifyListenersOnTakeCard() const
 
 bool Game::CheckWin()
 {
+	int player1Points = CalculatePoints(EPlayer::Player1);
+	int player2Points = CalculatePoints(EPlayer::Player2);
 	if (m_player1Hold && m_player2Hold)
 	{
-		int player1Points = CalculatePoints(EPlayer::Player1);
-		int player2Points = CalculatePoints(EPlayer::Player2);
-
 		if (player1Points == player2Points)
 		{
 			m_currentState = EState::Draw;
@@ -179,7 +178,7 @@ bool Game::CheckWin()
 		{
 			m_currentState = EState::Player2Win;
 		}
-		NotifyListenersOnWin();
+		NotifyListenersOnWin(player1Points, player2Points);
 		return true;
 	}
 
@@ -187,13 +186,13 @@ bool Game::CheckWin()
 	if (currentPlayerPoints > 21)
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player2Win : EState::Player1Win;
-		NotifyListenersOnWin();
+		NotifyListenersOnWin(player1Points,player2Points);
 		return true;
 	}
 	else if (currentPlayerPoints == 21)
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player1Win : EState::Player2Win;
-		NotifyListenersOnWin();
+		NotifyListenersOnWin(player1Points,player2Points);
 		return true;
 	}
 
