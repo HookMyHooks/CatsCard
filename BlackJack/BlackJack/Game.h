@@ -14,7 +14,7 @@ public:
 	// IGame methods
 	EPlayer GetCurrentPlayer() const override;
 	EState GetCurrentState() const override;
-	std::vector<CardPtr> GetCardsForPlayer(EPlayer player)const override;
+	Cards GetCardsForPlayer(EPlayer player)const override;
 	
 	void AddListener(IGameListener* listener) override;
 	void RemoveListener(IGameListener* listener) override;
@@ -40,8 +40,8 @@ private:
 private:
 
 	Deck m_deck;
-	std::vector<CardPtr>m_cardsPlayer1;
-	std::vector<CardPtr>m_cardsPlayer2;
+	Cards m_cardsPlayer1;
+	Cards m_cardsPlayer2;
 	GameListenerList m_Listeners;
 	EPlayer m_currentPlayer;
 	EState m_currentState;
