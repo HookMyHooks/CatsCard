@@ -16,5 +16,6 @@
         <file>card_k.png</file>
         <file>card_q.png</file>
         <file>cursor.png</file>
+        <file>card_a.png</file>
     </qresource>
 </RCC>

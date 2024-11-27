@@ -4,6 +4,11 @@
 #include "qmessagebox.h"
 #include "ui_FrontEnd.h"
 #include "IGame.h" 
+#include <QPixmap>
+#include <QLabel>
+#include <QHBoxLayout>  // Include for QHBoxLayout
+#include <QVBoxLayout>  // (Optional) if you need vertical layouts elsewhere
+#include <QDebug>       
 
 
 class FrontEnd : public QMainWindow,public IGameListener
@@ -21,6 +26,7 @@ public:
 
     // other methods
     void SetGame(IGamePtr game);
+    void displayCardBack(QLabel* label);
 
 
 private slots:
@@ -35,7 +41,10 @@ private:
     void displayCards(EPlayer player);
     void displayCardImage(ENumber card, QLabel* label);
 
-    QList<QLabel*> player1CardLabels;
-    QList<QLabel*> player2CardLabels;
+    QWidget* player1CardContainer;
+    QWidget* player2CardContainer;
+    QHBoxLayout* player1CardLayout;
+    QHBoxLayout* player2CardLayout;
+
     QMessageBox m_msgBoxEndGame;
 };

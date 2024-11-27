@@ -6,17 +6,24 @@ FrontEnd::FrontEnd(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::FrontEndClass)
 {
     ui->setupUi(this);
-    player1CardLabels = { ui->player1CardLabel1, ui->player1CardLabel2, ui->player1CardLabel3 };
-    player2CardLabels = { ui->player2CardLabel1, ui->player2CardLabel2, ui->player2CardLabel3 };
+
+    // Initialize player card containers and layouts
+    player1CardContainer = ui->Player1CardContainer;
+    player2CardContainer = ui->Player2CardContainer;
+
+    player1CardLayout = new QHBoxLayout(player1CardContainer);
+    player2CardLayout = new QHBoxLayout(player2CardContainer);
+
+    player1CardContainer->setLayout(player1CardLayout);
+    player2CardContainer->setLayout(player2CardLayout);
+
     QObject::connect(&m_msgBoxEndGame, &QMessageBox::buttonClicked, [&](QAbstractButton* button) {
         if (m_msgBoxEndGame.buttonRole(button) == QMessageBox::AcceptRole) {
             onOkButtonClicked();
         }
         });
-
-
-
 }
+
 
 FrontEnd::~FrontEnd()
 {
@@ -80,8 +87,8 @@ void FrontEnd::updateUI()
 {
     EPlayer currentPlayer = m_game->GetCurrentPlayer();
 
-    ui->Player1CardContainer->setVisible(currentPlayer == EPlayer(0));
-    ui->Player2CardContainer->setVisible(currentPlayer == EPlayer(1));
+  /*  ui->Player1CardContainer->setVisible(currentPlayer == EPlayer(0));
+    ui->Player2CardContainer->setVisible(currentPlayer == EPlayer(1));*/
 
     displayCards(EPlayer(0));
     displayCards(EPlayer(1));
@@ -104,24 +111,52 @@ void FrontEnd::onOkButtonClicked()
 {
     close();
 }
-
 void FrontEnd::displayCards(EPlayer player)
 {
-    QList<QLabel*> labels = (player == EPlayer::Player1) ? player1CardLabels : player2CardLabels;
+    QHBoxLayout* layout = (player == EPlayer::Player1) ? player1CardLayout : player2CardLayout;
+
+    QLayoutItem* item;
+    while ((item = layout->takeAt(0)) != nullptr)
+    {
+        delete item->widget(); 
+        delete item;           
+    }
 
     auto cards = m_game->GetCardsForPlayer(player);
+<<<<<<< Updated upstream
     for (int i = 0; i < labels.size(); i++)
+=======
+    bool isOpponent = (player != m_game->GetCurrentPlayer());
+
+    for (size_t i = 0; i < cards.size(); ++i)
+>>>>>>> Stashed changes
     {
-        if (i < cards.size())
+        QLabel* label = new QLabel(player == EPlayer::Player1 ? player1CardContainer : player2CardContainer);
+
+        if (isOpponent && i == 0)
         {
-            displayCardImage(cards[i]->GetNumber(), labels[i]); 
-            labels[i]->show();
+            displayCardBack(label);
         }
         else
         {
-            labels[i]->hide(); 
+
+            displayCardImage(cards[i]->GetNumber(), label);
         }
+
+        label->setFixedSize(100, 150); 
+        layout->addWidget(label);
     }
+
+    layout->addStretch(); 
+}
+
+void FrontEnd::displayCardBack(QLabel* label)
+{
+    QString cardBackFile = ":/cards/card_back.png"; // Path to the card-back image
+    QPixmap pixmap(cardBackFile);
+
+    label->setPixmap(pixmap);
+    label->setScaledContents(true);
 }
 
 
