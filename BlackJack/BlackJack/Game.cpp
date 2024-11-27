@@ -67,14 +67,13 @@ void Game::TakeCard()
 	{
 		m_cardsPlayer2.push_back(m_deck.GiveCard());
 	}
-	
+
+	NotifyListenersOnTakeCard();
+
 	CalculatePoints(m_currentPlayer);
 	CheckWin();
 	
-		SwitchPlayers();
-	
-	
-	
+	SwitchPlayers();
 }
 
 void Game::HoldCards()
@@ -153,6 +152,14 @@ void Game::NotifyListenersOnWin() const
 	for (auto it : m_Listeners)
 	{
 		it->OnWin();
+	}
+}
+
+void Game::NotifyListenersOnTakeCard() const
+{
+	for (auto it : m_Listeners)
+	{
+		it->OnTakeCard(m_currentPlayer);
 	}
 }
 

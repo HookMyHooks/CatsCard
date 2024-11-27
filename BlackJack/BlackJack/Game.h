@@ -40,6 +40,7 @@ private:
 
 	//Notify Listeners
 	void NotifyListenersOnWin() const;
+	void NotifyListenersOnTakeCard() const;
 	
 
 private:

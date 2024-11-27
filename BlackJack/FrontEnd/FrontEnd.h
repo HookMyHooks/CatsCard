@@ -17,6 +17,7 @@ public:
     //IGameListener
     void OnWin() override;
     void OnReset() override;
+    void OnTakeCard(const EPlayer& player) override;
 
     // other methods
     void SetGame(IGamePtr game);

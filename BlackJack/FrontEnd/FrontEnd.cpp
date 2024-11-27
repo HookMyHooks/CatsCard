@@ -49,6 +49,15 @@ void FrontEnd::OnReset()
 {
 }
 
+void FrontEnd::OnTakeCard(const EPlayer& player)
+{
+    ui->Player1CardContainer->setVisible(player == EPlayer(0));
+    ui->Player2CardContainer->setVisible(player == EPlayer(1));
+
+    displayCards(EPlayer(0));
+    displayCards(EPlayer(1));
+}
+
 void FrontEnd::SetGame(IGamePtr game)
 {
     this->m_game = game;
@@ -95,7 +104,7 @@ void FrontEnd::displayCards(EPlayer player)
     QList<QLabel*> labels = (player == EPlayer::Player1) ? player1CardLabels : player2CardLabels;
 
     auto cards = m_game->GetCardsForPlayer(player);
-    for (int i = 0; i < labels.size(); ++i)
+    for (int i = 0; i < labels.size(); i++)
     {
         if (i < cards.size())
         {
