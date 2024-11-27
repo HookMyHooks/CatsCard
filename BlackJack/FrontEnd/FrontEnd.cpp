@@ -24,7 +24,6 @@ FrontEnd::FrontEnd(QWidget* parent)
         });
 }
 
-
 FrontEnd::~FrontEnd()
 {
     delete ui;
@@ -32,43 +31,42 @@ FrontEnd::~FrontEnd()
 
 void FrontEnd::on_deckButton_clicked()
 {
-    m_game->TakeCard(); 
+    m_game->TakeCard();
     updateUI();
 }
 
 void FrontEnd::OnWin()
 {
-    ui->Player1CardContainer->setVisible(1);
-    ui->Player2CardContainer->setVisible(1);
+    // Make both card containers visible when the game ends
+    ui->Player1CardContainer->setVisible(true);
+    ui->Player2CardContainer->setVisible(true);
 
-    displayCards(EPlayer(0));
-    displayCards(EPlayer(1));
+    displayCards(EPlayer::Player1);
+    displayCards(EPlayer::Player2);
 
     QString msg;
     EState currentState = m_game->GetCurrentState();
     if (currentState == EState::Player1Win)
-        msg="Player 1 Wins!";
+        msg = "Player 1 Wins!";
     else if (currentState == EState::Player2Win)
-       msg="Player 2 Wins!";
+        msg = "Player 2 Wins!";
     else if (currentState == EState::Draw)
-        msg="It's a Draw!";
+        msg = "It's a Draw!";
 
     m_msgBoxEndGame.setText(msg);
-
     m_msgBoxEndGame.exec();
 }
 
 void FrontEnd::OnReset()
 {
+    // Placeholder for reset functionality
 }
 
 void FrontEnd::OnTakeCard(const EPlayer& player)
 {
-    ui->Player1CardContainer->setVisible(player == EPlayer(0));
-    ui->Player2CardContainer->setVisible(player == EPlayer(1));
-
-    displayCards(EPlayer(0));
-    displayCards(EPlayer(1));
+    // Update UI to reflect the card taken
+    displayCards(EPlayer::Player1);
+    displayCards(EPlayer::Player2);
 }
 
 void FrontEnd::SetGame(IGamePtr game)
@@ -87,23 +85,20 @@ void FrontEnd::updateUI()
 {
     EPlayer currentPlayer = m_game->GetCurrentPlayer();
 
-  /*  ui->Player1CardContainer->setVisible(currentPlayer == EPlayer(0));
-    ui->Player2CardContainer->setVisible(currentPlayer == EPlayer(1));*/
-
-    displayCards(EPlayer(0));
-    displayCards(EPlayer(1));
+    displayCards(EPlayer::Player1);
+    displayCards(EPlayer::Player2);
 
     ui->statusLabel->setText(currentPlayer == EPlayer::Player1 ? "Player 1's Turn" : "Player 2's Turn");
 
-    //check to elimini
     EState currentState = m_game->GetCurrentState();
     bool gameInProgress = (currentState == EState::InProgress);
     ui->deckButton->setEnabled(gameInProgress);
     ui->holdCardButton->setEnabled(gameInProgress);
+
     if (!gameInProgress)
     {
-        ui->Player1CardContainer->setVisible(1);
-        ui->Player2CardContainer->setVisible(1);
+        ui->Player1CardContainer->setVisible(true);
+        ui->Player2CardContainer->setVisible(true);
     }
 }
 
@@ -111,43 +106,42 @@ void FrontEnd::onOkButtonClicked()
 {
     close();
 }
+
 void FrontEnd::displayCards(EPlayer player)
 {
     QHBoxLayout* layout = (player == EPlayer::Player1) ? player1CardLayout : player2CardLayout;
 
+    // Clear the layout
     QLayoutItem* item;
     while ((item = layout->takeAt(0)) != nullptr)
     {
-        delete item->widget(); 
-        delete item;           
+        delete item->widget();
+        delete item;
     }
 
     auto cards = m_game->GetCardsForPlayer(player);
-<<<<<<< Updated upstream
-    for (int i = 0; i < labels.size(); i++)
-=======
     bool isOpponent = (player != m_game->GetCurrentPlayer());
 
     for (size_t i = 0; i < cards.size(); ++i)
->>>>>>> Stashed changes
     {
         QLabel* label = new QLabel(player == EPlayer::Player1 ? player1CardContainer : player2CardContainer);
 
         if (isOpponent && i == 0)
         {
+            // Display card-back for the first card of the opponent
             displayCardBack(label);
         }
         else
         {
-
+            // Display actual card
             displayCardImage(cards[i]->GetNumber(), label);
         }
 
-        label->setFixedSize(100, 150); 
+        label->setFixedSize(100, 150);
         layout->addWidget(label);
     }
 
-    layout->addStretch(); 
+    layout->addStretch();
 }
 
 void FrontEnd::displayCardBack(QLabel* label)
@@ -155,11 +149,15 @@ void FrontEnd::displayCardBack(QLabel* label)
     QString cardBackFile = ":/cards/card_back.png"; // Path to the card-back image
     QPixmap pixmap(cardBackFile);
 
+    if (pixmap.isNull())
+    {
+        qDebug() << "Failed to load card-back image:" << cardBackFile;
+        return;
+    }
+
     label->setPixmap(pixmap);
     label->setScaledContents(true);
 }
-
-
 
 void FrontEnd::displayCardImage(ENumber card, QLabel* label)
 {
@@ -167,7 +165,7 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
     switch (card)
     {
     case ENumber::A:
-        cardFile = ":/cards/card_A.png";
+        cardFile = ":/cards/card_a.png";
         break;
     case ENumber::J:
         cardFile = ":/cards/card_j.png";
@@ -190,9 +188,6 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
         return;
     }
 
-
     label->setPixmap(pixmap);
-    label->setScaledContents(true); 
+    label->setScaledContents(true);
 }
-
-
