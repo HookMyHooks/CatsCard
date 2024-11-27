@@ -14,19 +14,14 @@ public:
 	// IGame methods
 	EPlayer GetCurrentPlayer() const override;
 	EState GetCurrentState() const override;
-	Deck GetDeck() const override;
 	std::vector<CardPtr> GetCardsForPlayer(EPlayer player)const override;
-	//void SetCardsForPlayer(std::vector <CardPtr>, EPlayer player ) override;
 	
-	 void AddListener(IGameListener* listener) override;
-	 void RemoveListener(IGameListener* listener) override;
+	void AddListener(IGameListener* listener) override;
+	void RemoveListener(IGameListener* listener) override;
 
 	void TakeCard() override;
 	void HoldCards() override;
 	void SwitchPlayers();
-
-	//other methods
-
 
 
 private:
@@ -42,7 +37,6 @@ private:
 	void NotifyListenersOnWin() const;
 	void NotifyListenersOnTakeCard() const;
 	
-
 private:
 
 	Deck m_deck;
@@ -53,5 +47,4 @@ private:
 	EState m_currentState;
 	bool m_player1Hold; 
 	bool m_player2Hold;
-
 };

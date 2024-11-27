@@ -25,11 +25,6 @@ EState Game::GetCurrentState() const
 	return m_currentState;
 }
 
-Deck Game::GetDeck() const
-{
-	return m_deck;
-}
-
 std::vector<CardPtr> Game::GetCardsForPlayer(EPlayer player) const
 {
 	if (player == EPlayer::Player1)

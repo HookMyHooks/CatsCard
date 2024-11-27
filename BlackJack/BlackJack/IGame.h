@@ -13,7 +13,6 @@ class IGame
 public:
 	virtual EPlayer GetCurrentPlayer()const=0;
 	virtual EState GetCurrentState()const=0;
-	virtual Deck GetDeck()const=0;
 	virtual std::vector<CardPtr> GetCardsForPlayer(EPlayer player)const=0;
 
 	virtual void AddListener(IGameListener* listener) = 0;
@@ -21,7 +20,7 @@ public:
 
 	virtual void TakeCard() = 0;
 	virtual void HoldCards() = 0;
-	virtual int CalculatePoints(EPlayer player) = 0;
+	
 	static IGamePtr Produce();
 	virtual ~IGame() = default;
 };
