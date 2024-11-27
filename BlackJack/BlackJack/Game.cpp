@@ -158,8 +158,6 @@ void Game::NotifyListenersOnTakeCard() const
 	}
 }
 
-
-
 bool Game::CheckWin()
 {
 	int player1Points = CalculatePoints(EPlayer::Player1);
