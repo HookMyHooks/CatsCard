@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include<sstream>
+#include <vector>
 
 class Card 
 {
@@ -25,12 +26,13 @@ private:
 };
 
 using CardPtr = std::shared_ptr<Card>;
+using Cards = std::vector<CardPtr>;
 
 static EValue ConvertNumberToValue(ENumber number)
 {
 	switch (number) {
 	case ENumber::A:
-		return EValue::one; //or 1 depending on the player
+		return EValue::one; 
 	case ENumber::ten:
 	case ENumber::J:
 	case ENumber::Q:

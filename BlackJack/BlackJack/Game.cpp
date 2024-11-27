@@ -25,7 +25,7 @@ EState Game::GetCurrentState() const
 	return m_currentState;
 }
 
-std::vector<CardPtr> Game::GetCardsForPlayer(EPlayer player) const
+Cards Game::GetCardsForPlayer(EPlayer player) const
 {
 	if (player == EPlayer::Player1)
 	{
