@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>870</width>
+    <width>1241</width>
     <height>806</height>
    </rect>
   </property>
@@ -14,41 +14,42 @@
    <string>FrontEnd</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">
+    background-color: rgba(255, 240, 245, 0.8); </string>
+   </property>
    <widget class="QLabel" name="statusLabel">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>30</y>
-      <width>241</width>
+      <x>460</x>
+      <y>20</y>
+      <width>331</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI</family>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>CurrentPlayer</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="holdCardButton">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>350</y>
-      <width>80</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Hold Card</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="Player1CardContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>90</y>
-      <width>531</width>
+      <x>230</x>
+      <y>130</y>
+      <width>651</width>
       <height>232</height>
      </rect>
     </property>
@@ -68,9 +69,9 @@
    <widget class="QWidget" name="Player2CardContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>400</y>
-      <width>531</width>
+      <x>230</x>
+      <y>440</y>
+      <width>651</width>
       <height>232</height>
      </rect>
     </property>
@@ -90,10 +91,10 @@
    <widget class="QPushButton" name="deckButton">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>260</y>
-      <width>132</width>
-      <height>232</height>
+      <x>990</x>
+      <y>290</y>
+      <width>134</width>
+      <height>240</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -109,27 +110,85 @@ background-repeat: no-repeat;</string>
    <widget class="QLabel" name="currentPlayerPointsLabel">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>350</y>
-      <width>141</width>
-      <height>16</height>
+      <x>70</x>
+      <y>400</y>
+      <width>151</width>
+      <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Semibold</family>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Points</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="HoldOnlyLabel">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>350</y>
-      <width>211</width>
-      <height>21</height>
+      <x>610</x>
+      <y>380</y>
+      <width>221</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI</family>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:red;</string>
     </property>
     <property name="text">
      <string>&lt;-You can only hold</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="holdCardButton">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>380</y>
+      <width>150</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#holdCardButton {
+    border: none; /* Remove default button border */
+    background: transparent; /* Transparent background */
+    background-image: url(&quot;:/cards/button_hold.png&quot;); /* Normal state image */
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+QPushButton#holdCardButton:hover {
+border: 2px solid #FF69B4; 
+border-radius:10px;
+}
+
+QPushButton#holdCardButton:pressed {
+border: 2px solid #C71585; 
+}
+
+QPushButton#holdCardButton:disabled {
+    opacity: 0.6; 
+}</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
@@ -138,7 +197,7 @@ background-repeat: no-repeat;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>870</width>
+     <width>1241</width>
      <height>21</height>
     </rect>
    </property>

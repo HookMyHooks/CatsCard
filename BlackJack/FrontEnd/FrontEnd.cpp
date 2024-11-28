@@ -1,12 +1,13 @@
 #include "FrontEnd.h"
 #include <QPixmap>
 #include <QLabel>
+#include <QCursor>
 
 FrontEnd::FrontEnd(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::FrontEndClass)
 {
     ui->setupUi(this);
-
+    setCustomCursor();
     // Initialize player card containers and layouts
     player1CardContainer = ui->Player1CardContainer;
     player2CardContainer = ui->Player2CardContainer;
@@ -118,7 +119,7 @@ void FrontEnd::displayCards(EPlayer player)
             displayCardImage(cards[i]->GetNumber(), label);
         }
 
-        label->setFixedSize(100, 150);
+        label->setFixedSize(114, 200);
         layout->addWidget(label);
     }
 
@@ -172,4 +173,25 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
 
     label->setPixmap(pixmap);
     label->setScaledContents(true);
+}
+
+
+
+
+void FrontEnd::setCustomCursor()
+{
+    QString cursorFile = ":/cards/cursor.png"; // Path to your custom cursor PNG
+
+    // Load the custom cursor image
+    QPixmap cursorPixmap(cursorFile);
+    if (cursorPixmap.isNull()) {
+        qDebug() << "Failed to load custom cursor image:" << cursorFile;
+        return;
+    }
+
+    // Create a QCursor from the pixmap
+    QCursor customCursor(cursorPixmap);
+
+    // Set the cursor for the entire window
+    this->setCursor(customCursor);
 }

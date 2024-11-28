@@ -48,4 +48,5 @@ private:
     QHBoxLayout* player2CardLayout;
 
     QMessageBox m_msgBoxEndGame;
+    void setCustomCursor();
 };
