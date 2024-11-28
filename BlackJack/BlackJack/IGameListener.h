@@ -9,7 +9,6 @@ public:
 	
 	virtual void OnWin(int finalPointsPlayer1, int finalPointsPlayer2) = 0;
 	virtual void OnTakeCard(const EPlayer& player) = 0;
-	virtual void OnReset() = 0;
 
 	virtual ~IGameListener() = default;
 

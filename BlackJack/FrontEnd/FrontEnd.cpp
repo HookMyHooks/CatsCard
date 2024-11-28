@@ -17,12 +17,7 @@ FrontEnd::FrontEnd(QWidget* parent)
 
     player1CardContainer->setLayout(player1CardLayout);
     player2CardContainer->setLayout(player2CardLayout);
-
-    QObject::connect(&m_msgBoxEndGame, &QMessageBox::buttonClicked, [&](QAbstractButton* button) {
-        if (m_msgBoxEndGame.buttonRole(button) == QMessageBox::AcceptRole) {
-            onOkButtonClicked();
-        }
-        });
+    
 }
 
 FrontEnd::~FrontEnd()
@@ -42,11 +37,6 @@ void FrontEnd::OnWin(int pointsPlayer1,int pointsPlayer2)
     EndGame* endgame = new EndGame(currentState,pointsPlayer1,pointsPlayer2);
     endgame->show();
     this->close();
-}
-
-void FrontEnd::OnReset()
-{
-   
 }
 
 void FrontEnd::OnTakeCard(const EPlayer& player)
@@ -84,11 +74,6 @@ void FrontEnd::updateUI()
     ui->holdCardButton->setEnabled(gameInProgress);
     int currentPlayerPoints = m_game->GetPointsForPlayer(currentPlayer);
     ui->currentPlayerPointsLabel->setText(QString("Points: %1").arg(currentPlayerPoints));
-}
-
-void FrontEnd::onOkButtonClicked()
-{
-    close();
 }
 
 void FrontEnd::displayCards(EPlayer player)
