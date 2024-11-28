@@ -1,9 +1,9 @@
 #pragma once
 
+#include "ui_StartWindow.h"
 #include "FrontEnd.h"
 
 #include <QMainWindow>
-#include "ui_StartWindow.h"
 
 class StartWindow : public QMainWindow
 {

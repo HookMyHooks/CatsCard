@@ -40,14 +40,7 @@ int Game::GetPointsForPlayer(EPlayer player) const
 	return points;
 
 }
-bool Game::GetPlayer1Hold() const
-{
-	return m_player1Hold;
-}
-bool Game::GetPlayer2Hold() const
-{
-	return m_player2Hold;
-}
+
 void Game::AddListener(IGameListener* listener)
 {
 	m_Listeners.emplace_back(listener);
@@ -215,4 +208,9 @@ void Game::SwitchPlayers()
 {
 	m_currentPlayer = EPlayer(1 - (int)m_currentPlayer);
 
+}
+
+bool Game::GetPlayerHold(EPlayer& player) const
+{
+	return player == EPlayer::Player1 ? m_player1Hold: m_player2Hold;
 }

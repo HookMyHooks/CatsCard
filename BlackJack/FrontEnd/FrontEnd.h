@@ -28,8 +28,8 @@ public:
     void SetGame(IGamePtr game);
    
 private slots:
-    void on_deckButton_clicked();
-    void on_holdCardButton_clicked();
+    void onDeckButtonClicked();
+    void onHoldCardButtonClicked();
     void updateUI();
 
 private:
@@ -37,7 +37,6 @@ private:
     void displayCardImage(ENumber card, QLabel* label);
     void displayCardBack(QLabel* label);
     void setCustomCursor();
-
 
 private:
     Ui::FrontEndClass* ui;

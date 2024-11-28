@@ -8,7 +8,7 @@ FrontEnd::FrontEnd(QWidget* parent)
 {
     ui->setupUi(this);
     setCustomCursor();
-    // Initialize player card containers and layouts
+  
     player1CardContainer = ui->Player1CardContainer;
     player2CardContainer = ui->Player2CardContainer;
 
@@ -25,7 +25,7 @@ FrontEnd::~FrontEnd()
     delete ui;
 }
 
-void FrontEnd::on_deckButton_clicked()
+void FrontEnd::onDeckButtonClicked()
 {
     m_game->TakeCard();
     updateUI();
@@ -34,15 +34,16 @@ void FrontEnd::on_deckButton_clicked()
 void FrontEnd::OnWin(int pointsPlayer1,int pointsPlayer2)
 {
     int currentState = (int)m_game->GetCurrentState();
+
     EndGame* endgame = new EndGame(currentState,pointsPlayer1,pointsPlayer2);
     endgame->show();
+
     this->close();
 }
 
 void FrontEnd::OnTakeCard(const EPlayer& player)
 {
-    displayCards(EPlayer::Player1);
-    displayCards(EPlayer::Player2);
+    displayCards(player);
 }
 
 void FrontEnd::SetGame(IGamePtr game)
@@ -51,7 +52,7 @@ void FrontEnd::SetGame(IGamePtr game)
     updateUI();
 }
 
-void FrontEnd::on_holdCardButton_clicked()
+void FrontEnd::onHoldCardButtonClicked()
 {
     m_game->HoldCards();
     updateUI();
@@ -60,19 +61,20 @@ void FrontEnd::on_holdCardButton_clicked()
 void FrontEnd::updateUI()
 {
     EPlayer currentPlayer = m_game->GetCurrentPlayer();
+    EState currentState = m_game->GetCurrentState();
 
     displayCards(EPlayer::Player1);
     displayCards(EPlayer::Player2);
 
     ui->statusLabel->setText(currentPlayer == EPlayer::Player1 ? "Player 1's Turn" : "Player 2's Turn");
 
-    EState currentState = m_game->GetCurrentState();
     bool gameInProgress = (currentState == EState::InProgress);
-    bool currentPlayerHasHeld = (currentPlayer == EPlayer::Player1) ? m_game->GetPlayer1Hold() : m_game->GetPlayer2Hold();
+    bool currentPlayerHasHeld =  m_game->GetPlayerHold(currentPlayer);
+    int currentPlayerPoints = m_game->GetPointsForPlayer(currentPlayer);
+
     ui->HoldOnlyLabel->setVisible(currentPlayerHasHeld);
     ui->deckButton->setEnabled(gameInProgress && !currentPlayerHasHeld);
     ui->holdCardButton->setEnabled(gameInProgress);
-    int currentPlayerPoints = m_game->GetPointsForPlayer(currentPlayer);
     ui->currentPlayerPointsLabel->setText(QString("Points: %1").arg(currentPlayerPoints));
 }
 
