@@ -22,6 +22,8 @@ public:
 	void TakeCard() override;
 	void HoldCards() override;
 	void SwitchPlayers();
+	bool GetPlayer1Hold() const override;
+	bool GetPlayer2Hold() const override;
 
 
 private:

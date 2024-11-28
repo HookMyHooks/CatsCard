@@ -40,6 +40,14 @@ int Game::GetPointsForPlayer(EPlayer player) const
 	return points;
 
 }
+bool Game::GetPlayer1Hold() const
+{
+	return m_player1Hold;
+}
+bool Game::GetPlayer2Hold() const
+{
+	return m_player2Hold;
+}
 void Game::AddListener(IGameListener* listener)
 {
 	m_Listeners.emplace_back(listener);

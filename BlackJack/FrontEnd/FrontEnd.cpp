@@ -77,9 +77,10 @@ void FrontEnd::updateUI()
 
     EState currentState = m_game->GetCurrentState();
     bool gameInProgress = (currentState == EState::InProgress);
-    ui->deckButton->setEnabled(gameInProgress);
+    bool currentPlayerHasHeld = (currentPlayer == EPlayer::Player1) ? m_game->GetPlayer1Hold() : m_game->GetPlayer2Hold();
+    ui->HoldOnlyLabel->setVisible(currentPlayerHasHeld);
+    ui->deckButton->setEnabled(gameInProgress && !currentPlayerHasHeld);
     ui->holdCardButton->setEnabled(gameInProgress);
-
     int currentPlayerPoints = m_game->GetPointsForPlayer(currentPlayer);
     ui->currentPlayerPointsLabel->setText(QString("Points: %1").arg(currentPlayerPoints));
 }
@@ -160,6 +161,7 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
         cardFile = QString(":/cards/card_%1.png").arg(static_cast<int>(card));
         break;
     }
+
 
     QPixmap pixmap(cardFile);
     if (pixmap.isNull())

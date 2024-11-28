@@ -119,6 +119,19 @@ background-repeat: no-repeat;</string>
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QLabel" name="HoldOnlyLabel">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>350</y>
+      <width>211</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;-You can only hold</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
