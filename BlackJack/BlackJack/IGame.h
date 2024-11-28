@@ -14,6 +14,7 @@ public:
 	virtual EPlayer GetCurrentPlayer()const=0;
 	virtual EState GetCurrentState()const=0;
 	virtual Cards GetCardsForPlayer(EPlayer player)const=0;
+	virtual int GetPointsForPlayer(EPlayer player) const = 0;
 
 	virtual void AddListener(IGameListener* listener) = 0;
 	virtual void RemoveListener(IGameListener* listener) = 0;

@@ -15,7 +15,7 @@ public:
 	EPlayer GetCurrentPlayer() const override;
 	EState GetCurrentState() const override;
 	Cards GetCardsForPlayer(EPlayer player)const override;
-	
+	int GetPointsForPlayer(EPlayer player)const override;
 	void AddListener(IGameListener* listener) override;
 	void RemoveListener(IGameListener* listener) override;
 
@@ -31,7 +31,7 @@ private:
 	void InitiateCards(const EPlayer player);
 
 	bool CheckWin();
-	int CalculatePoints(EPlayer player);
+	int CalculatePoints(EPlayer player) const;
 
 	//Notify Listeners
 	void NotifyListenersOnWin(int pointsPlayer1,int pointsPlayer2) const;

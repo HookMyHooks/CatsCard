@@ -50,7 +50,6 @@ void FrontEnd::OnReset()
 
 void FrontEnd::OnTakeCard(const EPlayer& player)
 {
-    // Update UI to reflect the card taken
     displayCards(EPlayer::Player1);
     displayCards(EPlayer::Player2);
 }
@@ -81,11 +80,8 @@ void FrontEnd::updateUI()
     ui->deckButton->setEnabled(gameInProgress);
     ui->holdCardButton->setEnabled(gameInProgress);
 
-    if (!gameInProgress)
-    {
-        ui->Player1CardContainer->setVisible(true);
-        ui->Player2CardContainer->setVisible(true);
-    }
+    int currentPlayerPoints = m_game->GetPointsForPlayer(currentPlayer);
+    ui->currentPlayerPointsLabel->setText(QString("Points: %1").arg(currentPlayerPoints));
 }
 
 void FrontEnd::onOkButtonClicked()
@@ -114,12 +110,10 @@ void FrontEnd::displayCards(EPlayer player)
 
         if (isOpponent && i == 0)
         {
-            // Display card-back for the first card of the opponent
             displayCardBack(label);
         }
         else
         {
-            // Display actual card
             displayCardImage(cards[i]->GetNumber(), label);
         }
 

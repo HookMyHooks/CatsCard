@@ -34,6 +34,12 @@ Cards Game::GetCardsForPlayer(EPlayer player) const
 	return m_cardsPlayer2;
 }
 
+int Game::GetPointsForPlayer(EPlayer player) const
+{
+	int points=CalculatePoints(m_currentPlayer);
+	return points;
+
+}
 void Game::AddListener(IGameListener* listener)
 {
 	m_Listeners.emplace_back(listener);
@@ -119,7 +125,7 @@ void Game::InitiateCards(const EPlayer player)
 	}
 }
 
-int Game::CalculatePoints(EPlayer player)
+int Game::CalculatePoints(EPlayer player) const
 {
 	int points = 0;
 	bool hasAce = false;
