@@ -6,7 +6,6 @@ Game::Game()
 	 m_player1Hold(false),
 	 m_player2Hold(false)
 {
-	m_deck.InitiateDeck();
 	InitiateGame();
 }
 
@@ -27,24 +26,17 @@ EState Game::GetCurrentState() const
 
 Cards Game::GetCardsForPlayer(EPlayer player) const
 {
-	if (player == EPlayer::Player1)
-	{
-		return m_cardsPlayer1;
-	}
-	return m_cardsPlayer2;
+	return player == EPlayer::Player1 ? m_cardsPlayer1 : m_cardsPlayer2;
 }
 
 int Game::GetPointsForPlayer(EPlayer player) const
 {
-	int points=CalculatePoints(m_currentPlayer);
-	return points;
-
+	return CalculatePoints(m_currentPlayer);
 }
 
 void Game::AddListener(IGameListener* listener)
 {
 	m_Listeners.emplace_back(listener);
-
 }
 
 void Game::RemoveListener(IGameListener* listener)
@@ -55,9 +47,7 @@ void Game::RemoveListener(IGameListener* listener)
 		};
 
 	m_Listeners.erase(std::remove_if(m_Listeners.begin(), m_Listeners.end(), func));
-
 }
-
 
 void Game::TakeCard()
 {
@@ -72,9 +62,7 @@ void Game::TakeCard()
 
 	NotifyListenersOnTakeCard();
 
-	CalculatePoints(m_currentPlayer);
 	CheckWin();
-	
 	SwitchPlayers();
 }
 
@@ -97,19 +85,11 @@ void Game::HoldCards()
 	SwitchPlayers();
 }
 
-
 void Game::InitiateGame()
 {
 	m_deck.ShuffleDeck();
 	InitiateCards(EPlayer::Player1);
 	InitiateCards(EPlayer::Player2);
-}
-
-void Game::ResetGame()
-{
-	m_deck.InitiateDeck();
-	m_cardsPlayer1.clear();
-	m_cardsPlayer2.clear();
 }
 
 void Game::InitiateCards(const EPlayer player)
@@ -169,6 +149,7 @@ bool Game::CheckWin()
 {
 	int player1Points = CalculatePoints(EPlayer::Player1);
 	int player2Points = CalculatePoints(EPlayer::Player2);
+
 	if (m_player1Hold && m_player2Hold)
 	{
 		if (player1Points == player2Points)
@@ -187,27 +168,28 @@ bool Game::CheckWin()
 		return true;
 	}
 
-	int currentPlayerPoints = CalculatePoints(m_currentPlayer);
-	if (currentPlayerPoints > 21)
+	int currentPlayerPoints = m_currentPlayer==EPlayer::Player1? player1Points:player2Points;
+
+	if (currentPlayerPoints < 21)
+	{
+		return false;
+	}
+	else if (currentPlayerPoints > 21)
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player2Win : EState::Player1Win;
-		NotifyListenersOnWin(player1Points,player2Points);
-		return true;
 	}
 	else if (currentPlayerPoints == 21)
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player1Win : EState::Player2Win;
-		NotifyListenersOnWin(player1Points,player2Points);
-		return true;
+		
 	}
-
-	return false; 
+	NotifyListenersOnWin(player1Points, player2Points);
+	return true;
 }
 
 void Game::SwitchPlayers()
 {
 	m_currentPlayer = EPlayer(1 - (int)m_currentPlayer);
-
 }
 
 bool Game::GetPlayerHold(EPlayer& player) const

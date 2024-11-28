@@ -1,5 +1,6 @@
 #pragma once
 #include "Card.h"
+
 #include <vector>
 #include <memory>
 
@@ -7,13 +8,16 @@ class Deck
 {
 public:
     Deck();                         
-    void ShuffleDeck();            
-    std::shared_ptr<Card> GiveCard(); 
-    void InitiateDeck();     
+            
+    CardPtr GiveCard(); 
 
-    std::vector<std::shared_ptr<Card>> GetCards()const;
+    Cards GetCards()const;
 
+    void ShuffleDeck();
 
 private:
-    std::vector<std::shared_ptr<Card>> m_cards; 
+    void InitiateDeck();
+
+private:
+    Cards m_cards; 
 };

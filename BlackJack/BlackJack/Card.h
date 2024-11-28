@@ -1,20 +1,19 @@
 #pragma once
 #include "EValue.h"
 #include "ENumber.h"
+
 #include <iostream>
 #include <memory>
-#include<sstream>
+#include <sstream>
 #include <vector>
 
 class Card 
 {
-
 public:
 
 	Card();
 	Card(EValue value, ENumber number);
 	
-	//ICard methods
 	EValue GetValue() const ;
 	ENumber GetNumber() const ;
 	

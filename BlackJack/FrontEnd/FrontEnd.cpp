@@ -82,8 +82,8 @@ void FrontEnd::displayCards(EPlayer player)
 {
     QHBoxLayout* layout = (player == EPlayer::Player1) ? player1CardLayout : player2CardLayout;
 
-    // Clear the layout
     QLayoutItem* item;
+
     while ((item = layout->takeAt(0)) != nullptr)
     {
         delete item->widget();
@@ -115,7 +115,7 @@ void FrontEnd::displayCards(EPlayer player)
 
 void FrontEnd::displayCardBack(QLabel* label)
 {
-    QString cardBackFile = ":/cards/card_back.png"; // Path to the card-back image
+    QString cardBackFile = ":/cards/card_back.png";
     QPixmap pixmap(cardBackFile);
 
     if (pixmap.isNull())
@@ -150,7 +150,6 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
         break;
     }
 
-
     QPixmap pixmap(cardFile);
     if (pixmap.isNull())
     {
@@ -162,23 +161,18 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
     label->setScaledContents(true);
 }
 
-
-
-
 void FrontEnd::setCustomCursor()
 {
-    QString cursorFile = ":/cards/cursor.png"; // Path to your custom cursor PNG
+    QString cursorFile = ":/cards/cursor.png";
 
-    // Load the custom cursor image
     QPixmap cursorPixmap(cursorFile);
+
     if (cursorPixmap.isNull()) {
         qDebug() << "Failed to load custom cursor image:" << cursorFile;
         return;
     }
 
-    // Create a QCursor from the pixmap
     QCursor customCursor(cursorPixmap);
 
-    // Set the cursor for the entire window
     this->setCursor(customCursor);
 }
