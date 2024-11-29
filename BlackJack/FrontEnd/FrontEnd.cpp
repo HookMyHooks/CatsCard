@@ -17,7 +17,9 @@ FrontEnd::FrontEnd(QWidget* parent)
 
     player1CardContainer->setLayout(player1CardLayout);
     player2CardContainer->setLayout(player2CardLayout);
-    
+
+    connect(ui->deckButton, &QPushButton::clicked, this, &FrontEnd::onDeckButtonClicked);
+    connect(ui->holdCardButton, &QPushButton::clicked, this, &FrontEnd::onHoldCardButtonClicked);
 }
 
 FrontEnd::~FrontEnd()
