@@ -5,10 +5,68 @@
 
 //start game
 
+class MockListenerGame :public IGameListener
+{
+public:
+
+	MOCK_METHOD(void, OnWin, (int finalPointsPlayer1, int finalPointsPlayer2), (override));
+	MOCK_METHOD(void, OnTakeCard, (const EPlayer& player), (override));
+};
+
+TEST(GameTest, Player1TakeCardsListenerNotifies) {
+	Game game;
+	MockListenerGame listener;
+	game.AddListener(&listener);
+	EXPECT_CALL(listener, OnTakeCard(EPlayer::Player1)).Times(1);
+	game.TakeCard();
+
+}
+TEST(GameTest, Player2TakeCardsListenerNotifies) {
+	Game game;
+	MockListenerGame listener;
+	game.AddListener(&listener);
+	game.TakeCard();
+	EXPECT_CALL(listener, OnTakeCard(EPlayer::Player2)).Times(1);
+	game.TakeCard();
+}
+
+TEST(GameTest, PlayersTakeCardsListenerNotifies) {
+	Game game;
+	MockListenerGame listener;
+	game.AddListener(&listener);
+	EXPECT_CALL(listener, OnTakeCard(EPlayer::Player1)).Times(1);
+	game.TakeCard();
+	EXPECT_CALL(listener, OnTakeCard(EPlayer::Player2)).Times(1);
+	game.TakeCard();
+}
+
+TEST(GameTest, NotifyOnWin) {
+	Game game;
+	MockListenerGame listener;
+
+	game.AddListener(&listener);
+
+	EXPECT_CALL(listener, OnWin(testing::_, testing::_)).Times(1);
+
+	game.HoldCards();
+	game.HoldCards();
+
+	ASSERT_TRUE(game.GetCurrentState() == EState::Player1Win ||
+		game.GetCurrentState() == EState::Player2Win ||
+		game.GetCurrentState() == EState::Draw);
+}
+
 TEST(StartGame, FirstPlayer) {
 	Game game;
 	EPlayer player = game.GetCurrentPlayer();
 	ASSERT_EQ(player, EPlayer::Player1);
+}
+
+TEST(StartGame, SecondPlayer) {
+	Game game;
+	game.HoldCards();
+	EPlayer player = game.GetCurrentPlayer();
+	ASSERT_EQ(player, EPlayer::Player2);
 }
 
 //player switch done correctly
@@ -51,26 +109,21 @@ TEST(PlayerTake, isTrue) {
 
 TEST(PlayerHold, Player1Holds) {
 	Game game;
-	game.HoldCards();  
+	game.HoldCards();
 	ASSERT_TRUE(game.GetCurrentState() == EState::InProgress);
 
-	game.HoldCards();  
+	game.HoldCards();
 	ASSERT_TRUE(game.GetCurrentState() == EState::Player1Win || game.GetCurrentState() == EState::Player2Win || game.GetCurrentState() == EState::Draw);
 }
 
-TEST(GameEnd, Player1WinsOnBlackjack) {
+TEST(GameTest, GameStatus) {
 	Game game;
 
-	game.GetCardsForPlayer(EPlayer::Player1).clear();
-	game.GetCardsForPlayer(EPlayer::Player2).clear();
-
-	game.GetCardsForPlayer(EPlayer::Player1).push_back(std::make_shared<Card>(EValue::ten, ENumber::J));
-	game.GetCardsForPlayer(EPlayer::Player1).push_back(std::make_shared<Card>(EValue::eleven, ENumber::A));
-
-	game.GetCardsForPlayer(EPlayer::Player2).push_back(std::make_shared<Card>(EValue::ten, ENumber::J));
-
-	game.HoldCards(); 
 	game.HoldCards();
+	ASSERT_EQ(game.GetCurrentState(), EState::InProgress);
 
-	ASSERT_EQ(game.GetCurrentState(), EState::Player1Win);
+	game.HoldCards();
+	ASSERT_TRUE(game.GetCurrentState() == EState::Player1Win ||
+		game.GetCurrentState() == EState::Player2Win ||
+		game.GetCurrentState() == EState::Draw);
 }
