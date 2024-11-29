@@ -178,11 +178,7 @@ bool Game::CheckWin()
 	{
 		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player2Win : EState::Player1Win;
 	}
-	else if (currentPlayerPoints == 21)
-	{
-		m_currentState = (m_currentPlayer == EPlayer::Player1) ? EState::Player1Win : EState::Player2Win;
-		
-	}
+	
 	NotifyListenersOnWin(player1Points, player2Points);
 	return true;
 }
