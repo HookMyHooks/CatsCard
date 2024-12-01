@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <qboxlayout.h>
 #include"CursorUtil.h"
+#include "StartWindow.h"
 EndGame::EndGame(int typeEndGame, int finalPointsPlayer1, int finalPointsPlayer2, QWidget* parent)
     : QMainWindow(parent)
 {
@@ -47,4 +48,11 @@ EndGame::EndGame(int typeEndGame, int finalPointsPlayer1, int finalPointsPlayer2
 
 EndGame::~EndGame()
 {
+}
+
+void EndGame::closeEvent(QCloseEvent* event)
+{
+    QMainWindow::closeEvent(event); 
+    StartWindow* startWindow = new StartWindow();
+    startWindow->show();
 }

@@ -12,5 +12,7 @@ public:
 	~EndGame();
 
 private:
+	void closeEvent(QCloseEvent* event) override;
+private:
 	Ui::EndGameClass ui;
 };
