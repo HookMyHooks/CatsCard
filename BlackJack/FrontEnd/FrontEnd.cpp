@@ -2,13 +2,16 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QCursor>
-
+#include<QScreen>
 FrontEnd::FrontEnd(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::FrontEndClass)
 {
     ui->setupUi(this);
-    setCustomCursor();
-  
+    setCustomCursor(this);
+    QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    this->move(x, y - 50);
     player1CardContainer = ui->Player1CardContainer;
     player2CardContainer = ui->Player2CardContainer;
 
@@ -163,18 +166,3 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
     label->setScaledContents(true);
 }
 
-void FrontEnd::setCustomCursor()
-{
-    QString cursorFile = ":/cards/cursor.png";
-
-    QPixmap cursorPixmap(cursorFile);
-
-    if (cursorPixmap.isNull()) {
-        qDebug() << "Failed to load custom cursor image:" << cursorFile;
-        return;
-    }
-
-    QCursor customCursor(cursorPixmap);
-
-    this->setCursor(customCursor);
-}

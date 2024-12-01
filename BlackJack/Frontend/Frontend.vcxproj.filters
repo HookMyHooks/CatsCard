@@ -35,6 +35,9 @@
     <ClCompile Include="EndGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CursorUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="FrontEnd.h">
@@ -62,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StartWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorUtil.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

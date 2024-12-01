@@ -18,6 +18,7 @@
         <file>cursor.png</file>
         <file>card_a.png</file>
         <file>button_hold.png</file>
+        <file>logo.png</file>
     </qresource>
     <qresource prefix="/endgame">
         <file>winCard_player1.png</file>

@@ -7,7 +7,7 @@
 #include <QHBoxLayout>  
 #include <QVBoxLayout>  
 #include <QDebug>   
-
+#include "CursorUtil.h"
 #include "EndGame.h"
 #include "IGame.h" 
 
@@ -36,7 +36,6 @@ private:
     void displayCards(EPlayer player);
     void displayCardImage(ENumber card, QLabel* label);
     void displayCardBack(QLabel* label);
-    void setCustomCursor();
 
 private:
     Ui::FrontEndClass* ui;

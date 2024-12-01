@@ -2,15 +2,15 @@
 #include <QPixmap>
 #include <QLabel>
 #include <qboxlayout.h>
-
+#include"CursorUtil.h"
 EndGame::EndGame(int typeEndGame, int finalPointsPlayer1, int finalPointsPlayer2, QWidget* parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-
+    
     QString imagePath;
     QString message;
-
+    setCustomCursor(this);
     switch (typeEndGame)
     {
     case 0: // Player 1 Win

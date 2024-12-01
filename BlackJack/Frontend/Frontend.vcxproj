@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CursorUtil.cpp" />
     <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="FrontEnd.cpp" />
     <ClCompile Include="main.cpp" />
@@ -82,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="EndGame.h" />
+    <ClInclude Include="CursorUtil.h" />
     <ClInclude Include="StartWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
