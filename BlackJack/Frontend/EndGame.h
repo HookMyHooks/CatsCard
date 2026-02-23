@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include "ui_EndGame.h"
 
+
 class EndGame : public QMainWindow
 {
 	Q_OBJECT
@@ -14,5 +15,5 @@ public:
 private:
 	void closeEvent(QCloseEvent* event) override;
 private:
-	Ui::EndGameClass ui;
+    Ui::EndGameClass* ui;
 };

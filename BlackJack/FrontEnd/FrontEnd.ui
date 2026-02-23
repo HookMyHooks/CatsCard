@@ -38,10 +38,10 @@
      <string>CurrentPlayer</string>
     </property>
     <property name="textFormat">
-     <enum>Qt::AutoText</enum>
+     <enum>Qt::TextFormat::AutoText</enum>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QWidget" name="Player1CardContainer" native="true">
@@ -99,7 +99,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">border: none;
-background-image: url(:/cards/card_back);
+background-image: url(:/cards/FrontEnd/card_back);
 background-position: center;
 background-repeat: no-repeat;</string>
     </property>
@@ -127,7 +127,7 @@ background-repeat: no-repeat;</string>
      <string>Points</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="HoldOnlyLabel">
@@ -152,7 +152,7 @@ background-repeat: no-repeat;</string>
      <string>&lt;-You can only hold</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="holdCardButton">
@@ -168,7 +168,7 @@ background-repeat: no-repeat;</string>
      <string notr="true">QPushButton#holdCardButton {
     border: none; /* Remove default button border */
     background: transparent; /* Transparent background */
-    background-image: url(&quot;:/cards/button_hold.png&quot;); /* Normal state image */
+    background-image: url(&quot;:/cards/FrontEnd/button_hold.png&quot;); /* Normal state image */
     background-repeat: no-repeat;
     background-position: center;
 
@@ -198,7 +198,7 @@ QPushButton#holdCardButton:disabled {
      <x>0</x>
      <y>0</y>
      <width>1241</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

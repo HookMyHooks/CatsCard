@@ -1,8 +1,10 @@
+#include "ui_FrontEnd.h"
 #include "FrontEnd.h"
 #include <QPixmap>
 #include <QLabel>
 #include <QCursor>
 #include<QScreen>
+
 FrontEnd::FrontEnd(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::FrontEndClass)
 {
@@ -120,7 +122,7 @@ void FrontEnd::displayCards(EPlayer player)
 
 void FrontEnd::displayCardBack(QLabel* label)
 {
-    QString cardBackFile = ":/cards/card_back.png";
+    QString cardBackFile = ":/cards/FrontEnd/card_back.png";
     QPixmap pixmap(cardBackFile);
 
     if (pixmap.isNull())
@@ -139,19 +141,19 @@ void FrontEnd::displayCardImage(ENumber card, QLabel* label)
     switch (card)
     {
     case ENumber::A:
-        cardFile = ":/cards/card_a.png";
+        cardFile = ":/cards/FrontEnd/card_a.png";
         break;
     case ENumber::J:
-        cardFile = ":/cards/card_j.png";
+        cardFile = ":/cards/FrontEnd/card_j.png";
         break;
     case ENumber::Q:
-        cardFile = ":/cards/card_q.png";
+        cardFile = ":/cards/FrontEnd/card_q.png";
         break;
     case ENumber::K:
-        cardFile = ":/cards/card_k.png";
+        cardFile = ":/cards/FrontEnd/card_k.png";
         break;
     default:
-        cardFile = QString(":/cards/card_%1.png").arg(static_cast<int>(card));
+        cardFile = QString(":/cards/FrontEnd/card_%1.png").arg(static_cast<int>(card));
         break;
     }
 

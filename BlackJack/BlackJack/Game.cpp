@@ -31,7 +31,7 @@ Cards Game::GetCardsForPlayer(EPlayer player) const
 
 int Game::GetPointsForPlayer(EPlayer player) const
 {
-	return CalculatePoints(m_currentPlayer);
+    return CalculatePoints(player);
 }
 
 void Game::AddListener(IGameListener* listener)

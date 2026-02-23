@@ -2,7 +2,7 @@
 
 void setCustomCursor(QWidget* widget)
 {
-    QString cursorFile = ":/cards/cursor.png";
+    QString cursorFile = ":/cards/FrontEnd/cursor.png";
     QPixmap cursorPixmap(cursorFile);
 
     if (cursorPixmap.isNull()) {

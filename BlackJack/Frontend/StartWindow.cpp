@@ -4,7 +4,7 @@
 #include <QPushButton>
 #include <QIcon>
 #include <QScreen>
-//#include"CursorUtil.h"
+#include "../FrontEnd/CursorUtil.h"
 StartWindow::StartWindow(QWidget* parent)
     : QMainWindow(parent)
 {
@@ -16,14 +16,14 @@ StartWindow::StartWindow(QWidget* parent)
     this->move(x, y-50);
     setCustomCursor(this);
     QLabel* backgroundLabel = new QLabel(this);
-    QPixmap backgroundPixmap(":/endgame/background_start.png");
+    QPixmap backgroundPixmap(":/endgame/FrontEnd/background_start.png");
     backgroundLabel->setPixmap(backgroundPixmap);
     backgroundLabel->setScaledContents(true);
     backgroundLabel->setGeometry(0, 0, this->width(), this->height());
     backgroundLabel->lower();
 
     QLabel* titleLabel = new QLabel(this);
-    QPixmap logoPixmap(":/cards/logo.png");
+    QPixmap logoPixmap(":/cards/FrontEnd/logo.png");
     titleLabel->setPixmap(logoPixmap);
     titleLabel->setScaledContents(true);
     titleLabel->setGeometry(440, 150, 400, 150);
@@ -61,7 +61,7 @@ void StartWindow::onExitButtonClicked()
 QPushButton* StartWindow::createButton(const QString& iconName, int posX, int posY, int width, int height)
 {
     QPushButton* button = new QPushButton(this);
-    button->setIcon(QIcon(QString(":/cards/%1.png").arg(iconName)));
+    button->setIcon(QIcon(QString(":/cards/FrontEnd/%1.png").arg(iconName)));
     button->setIconSize(QSize(width, height));
     button->setFlat(true);
     button->setGeometry(posX, posY, width, height);

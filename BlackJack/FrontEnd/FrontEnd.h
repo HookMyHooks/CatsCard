@@ -6,10 +6,10 @@
 #include <QLabel>
 #include <QHBoxLayout>  
 #include <QVBoxLayout>  
-#include <QDebug>   
+#include <QDebug>
 #include "CursorUtil.h"
-#include "EndGame.h"
-#include "IGame.h" 
+#include "../Frontend/EndGame.h"
+#include "../BlackJack/IGame.h"
 
 
 class FrontEnd : public QMainWindow,public IGameListener

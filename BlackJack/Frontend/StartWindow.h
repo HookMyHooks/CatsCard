@@ -1,7 +1,8 @@
 #pragma once
 
 #include "ui_StartWindow.h"
-#include "FrontEnd.h"
+#include "../FrontEnd/FrontEnd.h"
+
 
 #include <QMainWindow>
 
@@ -17,6 +18,7 @@ public:
 private slots:
 	void onStartButtonClicked();
 	void onExitButtonClicked();
+
 
 private:
 	Ui::StartWindowClass ui;

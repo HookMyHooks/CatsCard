@@ -2,7 +2,7 @@
 #include "IGame.h"
 #include "Card.h"
 #include"Deck.h"
-
+#include <algorithm>
 #include <vector>
 
 class Game : public IGame 
